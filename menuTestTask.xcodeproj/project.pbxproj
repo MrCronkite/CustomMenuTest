@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		B21E3D1629DB3F7C0086D04C /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21E3D1529DB3F7C0086D04C /* CategoryCell.swift */; };
+		B21E3D1929DB586D0086D04C /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21E3D1829DB586D0086D04C /* ApiManager.swift */; };
+		B21E3D1B29DB619C0086D04C /* Pivko.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21E3D1A29DB619C0086D04C /* Pivko.swift */; };
 		B225842929DA9F4800C97035 /* UiColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225842429DA9F4800C97035 /* UiColorExtension.swift */; };
 		B225842A29DA9F4800C97035 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225842529DA9F4800C97035 /* Resources.swift */; };
 		B225842C29DA9F4800C97035 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225842729DA9F4800C97035 /* TabBarController.swift */; };
 		B225842F29DAA00000C97035 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225842E29DAA00000C97035 /* MainViewController.swift */; };
 		B225843229DAA6A800C97035 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225843129DAA6A800C97035 /* Banner.swift */; };
-		B225843429DAAE2100C97035 /* BannerSell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225843329DAAE2100C97035 /* BannerSell.swift */; };
+		B225843429DAAE2100C97035 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225843329DAAE2100C97035 /* BannerCell.swift */; };
 		B27A388529DA9D5800B4EF02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A388429DA9D5800B4EF02 /* AppDelegate.swift */; };
 		B27A388729DA9D5800B4EF02 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A388629DA9D5800B4EF02 /* SceneDelegate.swift */; };
 		B27A388E29DA9D5900B4EF02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B27A388D29DA9D5900B4EF02 /* Assets.xcassets */; };
@@ -22,12 +24,14 @@
 
 /* Begin PBXFileReference section */
 		B21E3D1529DB3F7C0086D04C /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		B21E3D1829DB586D0086D04C /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		B21E3D1A29DB619C0086D04C /* Pivko.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pivko.swift; sourceTree = "<group>"; };
 		B225842429DA9F4800C97035 /* UiColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UiColorExtension.swift; sourceTree = "<group>"; };
 		B225842529DA9F4800C97035 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		B225842729DA9F4800C97035 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B225842E29DAA00000C97035 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B225843129DAA6A800C97035 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
-		B225843329DAAE2100C97035 /* BannerSell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerSell.swift; sourceTree = "<group>"; };
+		B225843329DAAE2100C97035 /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
 		B27A388129DA9D5800B4EF02 /* menuTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = menuTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27A388429DA9D5800B4EF02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B27A388629DA9D5800B4EF02 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,13 +51,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B21E3D1729DB584D0086D04C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B21E3D1829DB586D0086D04C /* ApiManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		B225842229DA9F4800C97035 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				B225842329DA9F4800C97035 /* Resources */,
 				B225842729DA9F4800C97035 /* TabBarController.swift */,
 				B225842E29DAA00000C97035 /* MainViewController.swift */,
-				B225843329DAAE2100C97035 /* BannerSell.swift */,
+				B225843329DAAE2100C97035 /* BannerCell.swift */,
 				B21E3D1529DB3F7C0086D04C /* CategoryCell.swift */,
 			);
 			name = View;
@@ -73,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				B225843129DAA6A800C97035 /* Banner.swift */,
+				B21E3D1A29DB619C0086D04C /* Pivko.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -96,6 +109,7 @@
 		B27A388329DA9D5800B4EF02 /* menuTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				B21E3D1729DB584D0086D04C /* Network */,
 				B225843029DAA66600C97035 /* Model */,
 				B225842229DA9F4800C97035 /* View */,
 				B27A389929DA9D8000B4EF02 /* Application */,
@@ -194,7 +208,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B27A388529DA9D5800B4EF02 /* AppDelegate.swift in Sources */,
-				B225843429DAAE2100C97035 /* BannerSell.swift in Sources */,
+				B225843429DAAE2100C97035 /* BannerCell.swift in Sources */,
+				B21E3D1B29DB619C0086D04C /* Pivko.swift in Sources */,
+				B21E3D1929DB586D0086D04C /* ApiManager.swift in Sources */,
 				B27A388729DA9D5800B4EF02 /* SceneDelegate.swift in Sources */,
 				B225842C29DA9F4800C97035 /* TabBarController.swift in Sources */,
 				B225842F29DAA00000C97035 /* MainViewController.swift in Sources */,
