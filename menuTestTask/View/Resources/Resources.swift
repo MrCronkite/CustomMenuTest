@@ -11,7 +11,9 @@ enum R {
     enum Colors {
         static var inactive = UIColor(hexString: "#C3C4C9")
         static var active = UIColor(hexString: "#FD3A69")
-        static var backgraund = UIColor(hexString: "#E5E5E5")
+        static var backgraund = UIColor(hexString: "#F3F5F9")
+        static var backAlpha02 = backgraund.withAlphaComponent(0.2)
+        static var activeAlpha04 = active.withAlphaComponent(0.4)
     }
     
     enum Images {

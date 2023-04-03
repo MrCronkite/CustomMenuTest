@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B21E3D1629DB3F7C0086D04C /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21E3D1529DB3F7C0086D04C /* CategoryCell.swift */; };
 		B225842929DA9F4800C97035 /* UiColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225842429DA9F4800C97035 /* UiColorExtension.swift */; };
 		B225842A29DA9F4800C97035 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225842529DA9F4800C97035 /* Resources.swift */; };
 		B225842C29DA9F4800C97035 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225842729DA9F4800C97035 /* TabBarController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B21E3D1529DB3F7C0086D04C /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		B225842429DA9F4800C97035 /* UiColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UiColorExtension.swift; sourceTree = "<group>"; };
 		B225842529DA9F4800C97035 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		B225842729DA9F4800C97035 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 				B225842729DA9F4800C97035 /* TabBarController.swift */,
 				B225842E29DAA00000C97035 /* MainViewController.swift */,
 				B225843329DAAE2100C97035 /* BannerSell.swift */,
+				B21E3D1529DB3F7C0086D04C /* CategoryCell.swift */,
 			);
 			name = View;
 			path = menuTestTask/View;
@@ -195,6 +198,7 @@
 				B27A388729DA9D5800B4EF02 /* SceneDelegate.swift in Sources */,
 				B225842C29DA9F4800C97035 /* TabBarController.swift in Sources */,
 				B225842F29DAA00000C97035 /* MainViewController.swift in Sources */,
+				B21E3D1629DB3F7C0086D04C /* CategoryCell.swift in Sources */,
 				B225843229DAA6A800C97035 /* Banner.swift in Sources */,
 				B225842A29DA9F4800C97035 /* Resources.swift in Sources */,
 				B225842929DA9F4800C97035 /* UiColorExtension.swift in Sources */,
