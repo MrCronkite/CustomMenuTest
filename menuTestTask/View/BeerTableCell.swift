@@ -20,7 +20,8 @@ final class BeerTableCell: UITableViewCell {
     
     let headerText: UILabel = {
         let text = UILabel()
-        text.font = UIFont.systemFont(ofSize: 20)
+        text.font = UIFont.systemFont(ofSize: 18)
+        text.numberOfLines = 2
         text.text = "Betchina and grib"
         return text
     }()
@@ -40,6 +41,7 @@ final class BeerTableCell: UITableViewCell {
         button.layer.borderColor = R.Colors.active.cgColor
         button.layer.cornerRadius = 12
         button.setTitleColor(R.Colors.active, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.backgroundColor = .white
         return button
     }()
@@ -64,10 +66,10 @@ final class BeerTableCell: UITableViewCell {
             imageViewBeer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             imageViewBeer.widthAnchor.constraint(equalToConstant: 132),
             imageViewBeer.heightAnchor.constraint(equalToConstant: 132),
-            //imageViewBeer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             
             headerText.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             headerText.leadingAnchor.constraint(equalTo: imageViewBeer.trailingAnchor, constant: 20),
+            headerText.widthAnchor.constraint(equalToConstant: 180),
             
             descriptionText.topAnchor.constraint(equalTo: headerText.bottomAnchor, constant: 10),
             descriptionText.leadingAnchor.constraint(equalTo: imageViewBeer.trailingAnchor, constant: 20),

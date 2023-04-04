@@ -11,6 +11,7 @@ final class MainViewController: UIViewController{
     
     let banners: [Photo] = Banner.allBanners()
     var temperatureData: [PivkoElement] = []
+    var images: [UIImage] = []
     
     let mainTableView: UITableView = {
         var tableView = UITableView()
@@ -72,11 +73,43 @@ final class MainViewController: UIViewController{
                 self.mainTableView.reloadData()
             }
         }
+        
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureAppearance()
+    }
+    
+    func asyncLoadImage(imageURL: URL,
+                        runQueue: DispatchQueue,
+                        completionQueue: DispatchQueue,
+                        completion: @escaping (UIImage?, Error?) -> ()) {
+        runQueue.async {
+            do {
+                let data = try Data(contentsOf: imageURL)
+                completionQueue.async { completion(UIImage(data: data), nil)}
+            } catch let error {
+                completionQueue.async { completion(nil, error)}
+            }
+        }
+    }
+    
+    func asyncGroup(){
+        let aGroup = DispatchGroup()
+        
+            aGroup.enter()
+            asyncLoadImage(imageURL: URL(string: temperatureData[1].imageURL)!,
+                           runQueue: DispatchQueue.global(),
+                           completionQueue: DispatchQueue.main) { result, error in
+                guard let image1 = result else { return }
+                self.images.append(image1)
+                aGroup.leave()
+            }
+        
+        aGroup.notify(queue: .main) {
+            print(self.images)
+        }
     }
     
     private func configureAppearance() {
@@ -156,6 +189,7 @@ extension MainViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(BeerTableCell.self)",
                                                        for: indexPath) as? BeerTableCell
         else { return UITableViewCell() }
+        asyncGroup()
         let description = temperatureData[indexPath.row].description
         let title = temperatureData[indexPath.row].name
         cell.descriptionText.text = description
