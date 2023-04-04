@@ -16,6 +16,7 @@
 		B225842F29DAA00000C97035 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225842E29DAA00000C97035 /* MainViewController.swift */; };
 		B225843229DAA6A800C97035 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225843129DAA6A800C97035 /* Banner.swift */; };
 		B225843429DAAE2100C97035 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225843329DAAE2100C97035 /* BannerCell.swift */; };
+		B25E70A329DBEF4900E054C1 /* BeerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E70A229DBEF4900E054C1 /* BeerTableCell.swift */; };
 		B27A388529DA9D5800B4EF02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A388429DA9D5800B4EF02 /* AppDelegate.swift */; };
 		B27A388729DA9D5800B4EF02 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27A388629DA9D5800B4EF02 /* SceneDelegate.swift */; };
 		B27A388E29DA9D5900B4EF02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B27A388D29DA9D5900B4EF02 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		B225842E29DAA00000C97035 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B225843129DAA6A800C97035 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		B225843329DAAE2100C97035 /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		B25E70A229DBEF4900E054C1 /* BeerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerTableCell.swift; sourceTree = "<group>"; };
 		B27A388129DA9D5800B4EF02 /* menuTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = menuTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27A388429DA9D5800B4EF02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B27A388629DA9D5800B4EF02 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				B225842E29DAA00000C97035 /* MainViewController.swift */,
 				B225843329DAAE2100C97035 /* BannerCell.swift */,
 				B21E3D1529DB3F7C0086D04C /* CategoryCell.swift */,
+				B25E70A229DBEF4900E054C1 /* BeerTableCell.swift */,
 			);
 			name = View;
 			path = menuTestTask/View;
@@ -215,6 +218,7 @@
 				B225842C29DA9F4800C97035 /* TabBarController.swift in Sources */,
 				B225842F29DAA00000C97035 /* MainViewController.swift in Sources */,
 				B21E3D1629DB3F7C0086D04C /* CategoryCell.swift in Sources */,
+				B25E70A329DBEF4900E054C1 /* BeerTableCell.swift in Sources */,
 				B225843229DAA6A800C97035 /* Banner.swift in Sources */,
 				B225842A29DA9F4800C97035 /* Resources.swift in Sources */,
 				B225842929DA9F4800C97035 /* UiColorExtension.swift in Sources */,

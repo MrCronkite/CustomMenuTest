@@ -13,10 +13,13 @@ final class MainViewController: UIViewController{
     var temperatureData: [PivkoElement] = []
     
     let mainTableView: UITableView = {
-        let tableView = UITableView()
+        var tableView = UITableView()
+        tableView = .init(frame: .zero, style: .plain)
         tableView.layer.cornerRadius = 25
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = R.Colors.inactive
+        tableView.separatorInset = .init(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
     
@@ -110,7 +113,7 @@ final class MainViewController: UIViewController{
         collectionViewCategories.dataSource = self
         collectionViewCategories.register(СategoryCell.self, forCellWithReuseIdentifier: "\(СategoryCell.self)")
         mainTableView.dataSource = self
-        mainTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        mainTableView.register(BeerTableCell.self, forCellReuseIdentifier: "\(BeerTableCell.self)")
     }
 }
 
@@ -150,9 +153,13 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(BeerTableCell.self)",
+                                                       for: indexPath) as? BeerTableCell
+        else { return UITableViewCell() }
         let description = temperatureData[indexPath.row].description
-        cell.textLabel?.text = "\(description)"
+        let title = temperatureData[indexPath.row].name
+        cell.descriptionText.text = description
+        cell.headerText.text = title
         return cell
     }
 }
