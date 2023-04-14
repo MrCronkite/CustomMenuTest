@@ -7,8 +7,31 @@
 
 import UIKit
 
-final class APIManager {
-    static let shared = APIManager()
+protocol NetworkServicesBeer {
+    func getBeerData (complition: @escaping (Result<Pivko, Error>) -> Void)
+    
+}
+
+enum Errors: Error {
+   case invalidURL
+}
+
+final class NetworkServicesBeerImpl: NetworkServicesBeer {
+    private enum API {
+        private let beers = "https://api.punkapi.com/v2/beers"
+    }
+    
+    private let urlSessiob: URLSession
+    private let jsonDecoder: JSONDecoder
+    
+    init(urlSessiob: URLSession = .shared, jsonDecoder: JSONDecoder = .init()) {
+        self.urlSessiob = urlSessiob
+        self.jsonDecoder = jsonDecoder
+    }
+    
+    func getBeerData(complition: @escaping (Result<Pivko, Error>) -> Void) {
+        <#code#>
+    }
     
     let urlString = "https://api.punkapi.com/v2/beers"
     
