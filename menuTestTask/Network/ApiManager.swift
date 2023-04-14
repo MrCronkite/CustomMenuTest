@@ -14,41 +14,46 @@ protocol NetworkServicesBeer {
 
 enum Errors: Error {
    case invalidURL
+   case invalideState
 }
 
 final class NetworkServicesBeerImpl: NetworkServicesBeer {
     private enum API {
-        private let beers = "https://api.punkapi.com/v2/beers"
+        static let beers = "https://api.punkapi.com/v2/beers"
     }
     
-    private let urlSessiob: URLSession
+    private let urlSession: URLSession
     private let jsonDecoder: JSONDecoder
     
-    init(urlSessiob: URLSession = .shared, jsonDecoder: JSONDecoder = .init()) {
-        self.urlSessiob = urlSessiob
+    init(urlSession: URLSession = .shared, jsonDecoder: JSONDecoder = .init()) {
+        self.urlSession = urlSession
         self.jsonDecoder = jsonDecoder
     }
     
     func getBeerData(complition: @escaping (Result<Pivko, Error>) -> Void) {
-        <#code#>
-    }
-    
-    let urlString = "https://api.punkapi.com/v2/beers"
-    
-    func getData(complition: @escaping ([PivkoElement]) -> Void) {
-        let url = URL(string: urlString)!
-        let request = URLRequest(url: url)
+        guard let url = URL(string: API.beers) else {
+            complition(.failure(Errors.invalidURL))
+            return
+        }
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data else { return }
-            if let beer = try? JSONDecoder().decode(Pivko.self, from: data){
-                complition(beer)
-            } else {
-                print("fall")
+        let request = urlSession.dataTask(with: url) { [jsonDecoder] data, request, error in
+            switch (data, error) {
+            case let (.some(data), nil):
+                do {
+                    let beer = try jsonDecoder.decode(Pivko.self, from: data)
+                    complition(.success(beer))
+                } catch {
+                    complition(.failure(Errors.invalideState))
+                }
+            case let (nil, .some(error)):
+                complition(.failure(error))
+            default : complition(.failure(Errors.invalideState))
             }
         }
-        task.resume()
+        request.resume()
     }
+}
+    
     
     func asyncLoadImage(imageURL: URL,
                         completion: @escaping (UIImage?, Error?) -> ()) {
@@ -61,4 +66,4 @@ final class NetworkServicesBeerImpl: NetworkServicesBeer {
             }
         }
     }
-}
+
