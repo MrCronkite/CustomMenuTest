@@ -13,6 +13,7 @@ final class MainViewController: UIViewController{
     let banners: [Photo] = Banner.allBanners()
     var temperatureData: [PivkoElement] = []
     var images: [UIImage?] = []
+    let pivkoNetwork = NetworkServicesBeerImpl()
     
     let mainTableView: UITableView = {
         var tableView = UITableView()
@@ -66,18 +67,12 @@ final class MainViewController: UIViewController{
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         view.backgroundColor = R.Colors.backgraund
         configureAppearance()
-        
-        APIManager.shared.getData { [weak self] value in
-            DispatchQueue.main.async {
-                guard let self else { return }
-                self.temperatureData = value
-                for i in value {
-                    APIManager.shared.asyncLoadImage(imageURL: URL(string: i.imageURL)!) { [weak self] image, error in
-                        guard let self else { return }
-                        self.images.append(image)
-                    }
-                }
-                self.mainTableView.reloadData()
+        pivkoNetwork.getBeerData { result in
+            switch result {
+            case .success(let data):
+                print(data[1].name)
+            case .failure(let error):
+                print(error)
             }
         }
     }

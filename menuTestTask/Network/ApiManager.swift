@@ -13,8 +13,8 @@ protocol NetworkServicesBeer {
 }
 
 enum Errors: Error {
-   case invalidURL
-   case invalideState
+    case invalidURL
+    case invalideState
 }
 
 final class NetworkServicesBeerImpl: NetworkServicesBeer {
@@ -30,13 +30,13 @@ final class NetworkServicesBeerImpl: NetworkServicesBeer {
         self.jsonDecoder = jsonDecoder
     }
     
-    func getBeerData(complition: @escaping (Result<Pivko, Error>) -> Void) {
+    func getBeerData(complition: @escaping(Result<Pivko, Error>) -> Void) {
         guard let url = URL(string: API.beers) else {
             complition(.failure(Errors.invalidURL))
             return
         }
         
-        let request = urlSession.dataTask(with: url) { [jsonDecoder] data, request, error in
+        let request = urlSession.dataTask(with: url) { [jsonDecoder] data, response, error in
             switch (data, error) {
             case let (.some(data), nil):
                 do {
@@ -47,23 +47,23 @@ final class NetworkServicesBeerImpl: NetworkServicesBeer {
                 }
             case let (nil, .some(error)):
                 complition(.failure(error))
-            default : complition(.failure(Errors.invalideState))
+            default: complition(.failure(Errors.invalideState))
             }
         }
         request.resume()
     }
 }
-    
-    
-    func asyncLoadImage(imageURL: URL,
-                        completion: @escaping (UIImage?, Error?) -> ()) {
-        DispatchQueue.global().async {
-            do {
-                let data = try Data(contentsOf: imageURL)
-                DispatchQueue.main.async { completion(UIImage(data: data), nil)}
-            } catch let error {
-                DispatchQueue.main.async { completion(nil, error)}
-            }
+
+
+func asyncLoadImage(imageURL: URL,
+                    completion: @escaping (UIImage?, Error?) -> ()) {
+    DispatchQueue.global().async {
+        do {
+            let data = try Data(contentsOf: imageURL)
+            DispatchQueue.main.async { completion(UIImage(data: data), nil)}
+        } catch let error {
+            DispatchQueue.main.async { completion(nil, error)}
         }
     }
+}
 
