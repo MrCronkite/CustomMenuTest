@@ -12,9 +12,10 @@ final class СategoryCell: UICollectionViewCell {
         let button = UIButton()
         button.layer.borderWidth = 1
         button.layer.borderColor = R.Colors.activeAlpha04.cgColor
-        button.backgroundColor = R.Colors.backgraund
-        button.setTitleColor(R.Colors.activeAlpha04, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        button.backgroundColor = .white
+        button.buttonAnimation(button)
+        button.setTitleColor(R.Colors.textColor, for: .normal)
+        button.titleLabel?.font = R.Font.helvetica(with: 13)
         button.layer.cornerRadius = 15
         return button
     }()

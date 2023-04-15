@@ -1,5 +1,5 @@
 //
-//  UiColorExtension.swift
+//  UIColorExtension.swift
 //  testTaskMenu
 //
 //  Created by admin1 on 3.04.23.

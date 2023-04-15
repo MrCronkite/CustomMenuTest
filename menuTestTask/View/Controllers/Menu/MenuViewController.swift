@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  MenuViewController.swift
 //  menuTestTask
 //
 //  Created by admin1 on 3.04.23.
@@ -7,13 +7,15 @@
 
 import UIKit
 
-final class MainViewController: UIViewController{
+final class MenuViewController: UIViewController {
     
     let store = StorageManager()
     let banners: [Photo] = Banner.allBanners()
     var temperatureData: [PivkoElement] = []
     var images: [UIImage?] = []
     let pivkoNetwork = NetworkServicesBeerImpl()
+    
+    private let navBarMenu = NavBarMenu()
     
     let mainTableView: UITableView = {
         var tableView = UITableView()
@@ -52,21 +54,14 @@ final class MainViewController: UIViewController{
             layout.scrollDirection = .horizontal
             return layout
         }
-        
         return collectionView
-    }()
-    
-    let dropDownLable: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.text = "Moсква"
-        return label
     }()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         view.backgroundColor = R.Colors.backgraund
         configureAppearance()
+        
         pivkoNetwork.getBeerData { result in
             switch result {
             case .success(let data):
@@ -83,22 +78,19 @@ final class MainViewController: UIViewController{
     }
     
     private func configureAppearance() {
-        [dropDownLable,
-         collectionViewBanner,
+        [navBarMenu, collectionViewBanner,
          collectionViewCategories,
-         mainTableView].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview($0)
-        }
+         mainTableView].forEach { view.addViews(view: $0) }
         
         NSLayoutConstraint.activate([
-            dropDownLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
-            dropDownLable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            navBarMenu.topAnchor.constraint(equalTo: view.topAnchor),
+            navBarMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navBarMenu.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            collectionViewBanner.topAnchor.constraint(equalTo: dropDownLable.bottomAnchor, constant: 20),
+            collectionViewBanner.topAnchor.constraint(equalTo: navBarMenu.bottomAnchor, constant: 10),
             collectionViewBanner.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             collectionViewBanner.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            collectionViewBanner.heightAnchor.constraint(equalToConstant: 112),
+            collectionViewBanner.heightAnchor.constraint(equalToConstant: 122),
             
             collectionViewCategories.topAnchor.constraint(equalTo: collectionViewBanner.bottomAnchor, constant: 21),
             collectionViewCategories.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
@@ -121,7 +113,7 @@ final class MainViewController: UIViewController{
 }
 
 //MARK: - CollectionDataSource
-extension MainViewController: UICollectionViewDataSource {
+extension MenuViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case collectionViewCategories: return 4
@@ -150,7 +142,7 @@ extension MainViewController: UICollectionViewDataSource {
 }
 
 //MARK: - TableDataSource
-extension MainViewController: UITableViewDataSource {
+extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         temperatureData.count
     }

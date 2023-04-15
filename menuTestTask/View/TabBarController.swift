@@ -35,8 +35,8 @@ final class TabBarController: UITabBarController {
         tabBar.layer.borderWidth = 0.2
         tabBar.layer.borderColor = R.Colors.inactive.cgColor
         
-        let controllers: [UINavigationController] = Tabs.allCases.map { tab in
-            let controller = UINavigationController(rootViewController: getController(for: tab))
+        let controllers: [NavBarControoler] = Tabs.allCases.map { tab in
+            let controller = NavBarControoler(rootViewController: getController(for: tab))
             controller.tabBarItem = UITabBarItem(title: R.Strings.TabBar.title(for: tab),
                                                  image: R.ImagesBar.TabBar.icon(for: tab),
                                                  tag: tab.rawValue)
@@ -48,7 +48,7 @@ final class TabBarController: UITabBarController {
     
     private func getController(for tab: Tabs) -> UIViewController {
         switch tab {
-        case .menu: return MainViewController()
+        case .menu: return MenuViewController()
         case .contacts: return UIViewController()
         case .profile: return UIViewController()
         case .cart: return UIViewController()
