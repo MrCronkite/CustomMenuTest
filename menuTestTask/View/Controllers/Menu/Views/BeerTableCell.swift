@@ -20,8 +20,9 @@ final class BeerTableCell: UITableViewCell {
     
     let headerText: UILabel = {
         let text = UILabel()
-        text.font = UIFont.systemFont(ofSize: 18)
+        text.font = R.Font.helvetica(with: 18)
         text.numberOfLines = 2
+        text.textColor = R.Colors.textColor
         text.text = "Betchina and grib"
         return text
     }()
@@ -29,7 +30,8 @@ final class BeerTableCell: UITableViewCell {
     let descriptionText: UILabel = {
        let lable = UILabel()
         lable.textColor = R.Colors.inactive
-        lable.font = UIFont.systemFont(ofSize: 12)
+        lable.text = "Betchina and grib china and grib china and grib china and grib china and grib china and grib china and grib china and grib china and grib china and grib"
+        lable.font = R.Font.helvetica(with: 12)
         lable.numberOfLines = 4
        return lable
     }()
@@ -38,10 +40,11 @@ final class BeerTableCell: UITableViewCell {
         let button = UIButton()
         button.setTitle("от 345 р", for: .normal)
         button.layer.borderWidth = 1
+        button.buttonAnimation(button)
         button.layer.borderColor = R.Colors.active.cgColor
         button.layer.cornerRadius = 12
-        button.setTitleColor(R.Colors.active, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.setTitleColor(R.Colors.textColor, for: .normal)
+        button.titleLabel?.font = R.Font.helvetica(with: 14)
         button.backgroundColor = .white
         return button
     }()

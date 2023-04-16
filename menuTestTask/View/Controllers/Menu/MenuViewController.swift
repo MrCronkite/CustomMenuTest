@@ -92,7 +92,7 @@ final class MenuViewController: UIViewController {
             collectionViewBanner.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             collectionViewBanner.heightAnchor.constraint(equalToConstant: 122),
             
-            collectionViewCategories.topAnchor.constraint(equalTo: collectionViewBanner.bottomAnchor, constant: 21),
+            collectionViewCategories.topAnchor.constraint(equalTo: collectionViewBanner.bottomAnchor, constant: 18),
             collectionViewCategories.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             collectionViewCategories.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             collectionViewCategories.heightAnchor.constraint(equalToConstant: 40),
@@ -112,11 +112,11 @@ final class MenuViewController: UIViewController {
     }
 }
 
-//MARK: - CollectionDataSource
+
 extension MenuViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
-        case collectionViewCategories: return 4
+        case collectionViewCategories: return 6
         case collectionViewBanner: return banners.count
         default: return 0
         }
@@ -144,17 +144,18 @@ extension MenuViewController: UICollectionViewDataSource {
 //MARK: - TableDataSource
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        temperatureData.count
+        //temperatureData.count
+        20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(BeerTableCell.self)",
                                                        for: indexPath) as? BeerTableCell
         else { return UITableViewCell() }
-        let description = temperatureData[indexPath.row].description
-        let title = temperatureData[indexPath.row].name
-        cell.descriptionText.text = description
-        cell.headerText.text = title
+//        let description = temperatureData[indexPath.row].description
+//        let title = temperatureData[indexPath.row].name
+//        cell.descriptionText.text = description
+//        cell.headerText.text = title
         return cell
     }
 }
