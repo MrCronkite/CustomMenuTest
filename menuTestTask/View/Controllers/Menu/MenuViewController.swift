@@ -62,10 +62,13 @@ final class MenuViewController: UIViewController {
         view.backgroundColor = R.Colors.backgraund
         configureAppearance()
         
-        pivkoNetwork.getBeerData { result in
+        pivkoNetwork.getBeerData { [self] result in
             switch result {
             case .success(let data):
-                print(data[1].name)
+                self.temperatureData = data
+                DispatchQueue.main.async {
+                    self.mainTableView.reloadData()
+                }
             case .failure(let error):
                 print(error)
             }
@@ -144,18 +147,17 @@ extension MenuViewController: UICollectionViewDataSource {
 //MARK: - TableDataSource
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //temperatureData.count
-        20
+        temperatureData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(BeerTableCell.self)",
                                                        for: indexPath) as? BeerTableCell
         else { return UITableViewCell() }
-//        let description = temperatureData[indexPath.row].description
-//        let title = temperatureData[indexPath.row].name
-//        cell.descriptionText.text = description
-//        cell.headerText.text = title
+        let description = temperatureData[indexPath.row].description
+        let title = temperatureData[indexPath.row].name
+        cell.descriptionText.text = description
+        cell.headerText.text = title
         return cell
     }
 }
