@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - PivkoElement
-struct PivkoElement: Codable {
+struct BeerElement: Codable {
     let id: Int
     let name, tagline, firstBrewed, description: String
     let imageURL: String
@@ -121,4 +121,4 @@ struct MashTemp: Codable {
     let duration: Int?
 }
 
-typealias Pivko = [PivkoElement]
+typealias Beer = [BeerElement]

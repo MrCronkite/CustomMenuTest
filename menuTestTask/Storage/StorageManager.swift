@@ -11,7 +11,7 @@ import UIKit
 protocol StorageManagerProtocol {
     func set(_ object: Any?, forKey key: StorageManager.Keys)
     
-    func dict(forKey key: StorageManager.Keys) -> [PivkoElement]?
+    func dict(forKey key: StorageManager.Keys) -> [BeerElement]?
     func images(forKey key: StorageManager.Keys) -> [UIImage?]?
 }
 
@@ -40,8 +40,8 @@ extension StorageManager: StorageManagerProtocol {
         store(object, key: key.rawValue)
     }
     
-    func dict(forKey key: Keys) -> [PivkoElement]? {
-        restore(forKey: key.rawValue) as? [PivkoElement]
+    func dict(forKey key: Keys) -> [BeerElement]? {
+        restore(forKey: key.rawValue) as? [BeerElement]
     }
     
     func images(forKey key: Keys) -> [UIImage?]? {

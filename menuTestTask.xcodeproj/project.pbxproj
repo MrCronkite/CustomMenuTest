@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B21E3D1629DB3F7C0086D04C /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21E3D1529DB3F7C0086D04C /* CategoryCell.swift */; };
 		B21E3D1929DB586D0086D04C /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21E3D1829DB586D0086D04C /* ApiManager.swift */; };
-		B21E3D1B29DB619C0086D04C /* Pivko.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21E3D1A29DB619C0086D04C /* Pivko.swift */; };
+		B21E3D1B29DB619C0086D04C /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21E3D1A29DB619C0086D04C /* Beer.swift */; };
 		B225842929DA9F4800C97035 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225842429DA9F4800C97035 /* UIColorExtension.swift */; };
 		B225842A29DA9F4800C97035 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225842529DA9F4800C97035 /* Resources.swift */; };
 		B225842C29DA9F4800C97035 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225842729DA9F4800C97035 /* TabBarController.swift */; };
@@ -31,7 +31,7 @@
 /* Begin PBXFileReference section */
 		B21E3D1529DB3F7C0086D04C /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		B21E3D1829DB586D0086D04C /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
-		B21E3D1A29DB619C0086D04C /* Pivko.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pivko.swift; sourceTree = "<group>"; };
+		B21E3D1A29DB619C0086D04C /* Beer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
 		B225842429DA9F4800C97035 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		B225842529DA9F4800C97035 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		B225842729DA9F4800C97035 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				B225843129DAA6A800C97035 /* Banner.swift */,
-				B21E3D1A29DB619C0086D04C /* Pivko.swift */,
+				B21E3D1A29DB619C0086D04C /* Beer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -269,7 +269,7 @@
 				B24202A829EADB22007FBFA2 /* NavBarMenu.swift in Sources */,
 				B225843429DAAE2100C97035 /* BannerCell.swift in Sources */,
 				B242029E29EAC2AF007FBFA2 /* MenuButton.swift in Sources */,
-				B21E3D1B29DB619C0086D04C /* Pivko.swift in Sources */,
+				B21E3D1B29DB619C0086D04C /* Beer.swift in Sources */,
 				B21E3D1929DB586D0086D04C /* ApiManager.swift in Sources */,
 				B27A388729DA9D5800B4EF02 /* SceneDelegate.swift in Sources */,
 				B225842C29DA9F4800C97035 /* TabBarController.swift in Sources */,

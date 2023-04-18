@@ -11,9 +11,9 @@ final class MenuViewController: UIViewController {
     
     let store = StorageManager()
     let banners: [Photo] = Banner.allBanners()
-    var temperatureData: [PivkoElement] = []
+    var temperatureData: [BeerElement] = []
     var images: [UIImage?] = []
-    let pivkoNetwork = NetworkServicesBeerImpl()
+    let beerNetwork = NetworkServicesBeerImpl()
     
     private let navBarMenu = NavBarMenu()
     
@@ -62,7 +62,7 @@ final class MenuViewController: UIViewController {
         view.backgroundColor = R.Colors.backgraund
         configureAppearance()
         
-        pivkoNetwork.getBeerData { [self] result in
+        beerNetwork.getBeerData { [self] result in
             switch result {
             case .success(let data):
                 self.temperatureData = data
