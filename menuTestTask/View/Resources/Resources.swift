@@ -22,7 +22,6 @@ enum R {
         static var downArrow = UIImage(named: "downArrow")
     }
     
-    
     enum Strings {
         enum TabBar {
             static func title(for tab: Tabs) -> String {

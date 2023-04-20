@@ -9,7 +9,6 @@ import UIKit
 
 protocol NetworkServicesBeer {
     func getBeerData (complition: @escaping (Result<Beer, Error>) -> Void)
-    
 }
 
 enum Errors: Error {

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - PivkoElement
 struct BeerElement: Decodable {
     let id: Int
     let name, tagline, firstBrewed, description: String
@@ -45,7 +44,6 @@ struct BeerElement: Decodable {
     }
 }
 
-// MARK: - BoilVolume
 struct BoilVolume: Decodable {
     let value: Double
     let unit: Unit
@@ -63,14 +61,12 @@ enum ContributedBy: String, Decodable {
     case samMasonSamjbmason = "Sam Mason <samjbmason>"
 }
 
-// MARK: - Ingredients
 struct Ingredients: Decodable {
     let malt: [Malt]
     let hops: [Hop]
     let yeast: String
 }
 
-// MARK: - Hop
 struct Hop: Decodable {
     let name: String
     let amount: BoilVolume
@@ -92,13 +88,11 @@ enum Attribute: String, Decodable {
     case flavour = "flavour"
 }
 
-// MARK: - Malt
 struct Malt: Decodable {
     let name: String
     let amount: BoilVolume
 }
 
-// MARK: - Method
 struct Method: Decodable {
     let mashTemp: [MashTemp]
     let fermentation: Fermentation
@@ -110,12 +104,10 @@ struct Method: Decodable {
     }
 }
 
-// MARK: - Fermentation
 struct Fermentation: Decodable {
     let temp: BoilVolume
 }
 
-// MARK: - MashTemp
 struct MashTemp: Decodable {
     let temp: BoilVolume
     let duration: Int?
