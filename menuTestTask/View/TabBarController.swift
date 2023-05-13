@@ -18,13 +18,23 @@ final class TabBarController: UITabBarController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
+        
         configureAppearance()
+        usagePresenter()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
+        
         configureAppearance()
+        usagePresenter()
+    }
+    
+    private func usagePresenter() {
+//        let view = MenuViewController()
+//        let presenter = MenuPresenterImpl(view: view)
+//        view.presenter = presenter
     }
     
     private func configureAppearance() {

@@ -7,13 +7,18 @@
 
 import UIKit
 
+protocol MenuViewProtocol: class {
+    func setTableView(beerData: [BeerElement])
+}
+
 final class MenuViewController: UIViewController {
     
     let store = StorageManager()
     let banners: [Photo] = Banner.allBanners()
     var temperatureData: [BeerElement] = []
     var images: [UIImage?] = []
-    let beerNetwork = NetworkServicesBeerImpl()
+    
+    var presenter: MenuPresenterImpl?
     
     private let navBarMenu = NavBarMenu()
     
@@ -59,17 +64,7 @@ final class MenuViewController: UIViewController {
         addConstraintViews()
         configureAppearance()
         
-        beerNetwork.getBeerData { [self] result in
-            switch result {
-            case .success(let data):
-                self.temperatureData = data
-                DispatchQueue.main.async {
-                    self.mainTableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+        presenter?.setDataTableView()
     }
     
     required init?(coder: NSCoder) {
@@ -80,7 +75,14 @@ final class MenuViewController: UIViewController {
     }
 }
 
-extension MenuViewController {
+extension MenuViewController: MenuViewProtocol {
+    func setTableView(beerData: [BeerElement]) {
+        self.temperatureData = beerData
+        print(temperatureData)
+        DispatchQueue.main.async {
+            self.mainTableView.reloadData()
+        }
+    }
     
     private func setupViews() {
         [navBarMenu,

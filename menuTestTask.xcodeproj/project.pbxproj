@@ -26,6 +26,7 @@
 		B27A388E29DA9D5900B4EF02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B27A388D29DA9D5900B4EF02 /* Assets.xcassets */; };
 		B27A389129DA9D5900B4EF02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B27A388F29DA9D5900B4EF02 /* LaunchScreen.storyboard */; };
 		B2A6EFE729EAE86D0010DACD /* NavBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6EFE629EAE86D0010DACD /* NavBarController.swift */; };
+		B2B3F2002A101045003F944F /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B3F1FF2A101045003F944F /* MenuPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		B27A389029DA9D5900B4EF02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B27A389229DA9D5900B4EF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2A6EFE629EAE86D0010DACD /* NavBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarController.swift; sourceTree = "<group>"; };
+		B2B3F1FF2A101045003F944F /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 		B27A388329DA9D5800B4EF02 /* menuTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				B2B3F1FE2A101012003F944F /* Presenter */,
 				B24F311329DC9D450053EC46 /* Storage */,
 				B21E3D1729DB584D0086D04C /* Network */,
 				B225843029DAA66600C97035 /* Model */,
@@ -193,6 +196,14 @@
 				B27A388629DA9D5800B4EF02 /* SceneDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		B2B3F1FE2A101012003F944F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				B2B3F1FF2A101045003F944F /* MenuPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +293,7 @@
 				B225842A29DA9F4800C97035 /* Resources.swift in Sources */,
 				B225842929DA9F4800C97035 /* UIColorExtension.swift in Sources */,
 				B24F311529DC9D640053EC46 /* StorageManager.swift in Sources */,
+				B2B3F2002A101045003F944F /* MenuPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
