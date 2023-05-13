@@ -55,6 +55,8 @@ final class MenuViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setupViews()
+        addConstraintViews()
         configureAppearance()
         
         beerNetwork.getBeerData { [self] result in
@@ -72,6 +74,8 @@ final class MenuViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setupViews()
+        addConstraintViews()
         configureAppearance()
     }
 }

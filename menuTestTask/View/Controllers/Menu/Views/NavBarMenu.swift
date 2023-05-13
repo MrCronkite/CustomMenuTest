@@ -19,20 +19,26 @@ final class NavBarMenu: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
-        configureNavMenuView()
+        setupViews()
+        addConstraintViews()
+        configureAppearance()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(frame: .zero)
+        setupViews()
+        addConstraintViews()
+        configureAppearance()
     }
     
 }
 
 extension NavBarMenu {
-    func configureNavMenuView() {
+    private func setupViews() {
         addViews(view: dropItemButton)
-        
+    }
+    
+    private func addConstraintViews() {
         NSLayoutConstraint.activate([
             dropItemButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             dropItemButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
@@ -40,5 +46,9 @@ extension NavBarMenu {
             dropItemButton.heightAnchor.constraint(equalToConstant: 35),
             dropItemButton.widthAnchor.constraint(equalToConstant: 100)
         ])
+    }
+    
+    private func configureAppearance() {
+        backgroundColor = .white
     }
 }
