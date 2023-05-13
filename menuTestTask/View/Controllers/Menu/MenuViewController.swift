@@ -29,17 +29,13 @@ final class MenuViewController: UIViewController {
     }()
     
     let collectionViewBanner: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupFlow())
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = .init(width: 300, height: 112)
+        layout.scrollDirection = .horizontal
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = R.Colors.backgraund
         collectionView.showsHorizontalScrollIndicator = false
-        
-        func setupFlow() -> UICollectionViewFlowLayout {
-            let layout = UICollectionViewFlowLayout()
-            layout.itemSize = .init(width: 300, height: 112)
-            layout.scrollDirection = .horizontal
-            return layout
-        }
-        
         return collectionView
     }()
     
@@ -59,7 +55,6 @@ final class MenuViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        view.backgroundColor = R.Colors.backgraund
         configureAppearance()
         
         beerNetwork.getBeerData { [self] result in
@@ -79,12 +74,30 @@ final class MenuViewController: UIViewController {
         super.init(coder: coder)
         configureAppearance()
     }
+}
+
+extension MenuViewController {
     
-    private func configureAppearance() {
-        [navBarMenu, collectionViewBanner,
+    private func setupViews() {
+        [navBarMenu,
+         collectionViewBanner,
          collectionViewCategories,
          mainTableView].forEach { view.addViews(view: $0) }
+    }
+    
+    private func configureAppearance() {
+        view.backgroundColor = R.Colors.backgraund
         
+        collectionViewBanner.register(BannerCell.self, forCellWithReuseIdentifier: "\(BannerCell.self)")
+        collectionViewCategories.register(СategoryCell.self, forCellWithReuseIdentifier: "\(СategoryCell.self)")
+        mainTableView.register(BeerTableCell.self, forCellReuseIdentifier: "\(BeerTableCell.self)")
+        
+        collectionViewCategories.dataSource = self
+        collectionViewBanner.dataSource = self
+        mainTableView.dataSource = self
+    }
+    
+    private func addConstraintViews() {
         NSLayoutConstraint.activate([
             navBarMenu.topAnchor.constraint(equalTo: view.topAnchor),
             navBarMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -104,18 +117,11 @@ final class MenuViewController: UIViewController {
             mainTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             mainTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-            
         ])
-        collectionViewBanner.dataSource = self
-        collectionViewBanner.register(BannerCell.self, forCellWithReuseIdentifier: "\(BannerCell.self)")
-        collectionViewCategories.dataSource = self
-        collectionViewCategories.register(СategoryCell.self, forCellWithReuseIdentifier: "\(СategoryCell.self)")
-        mainTableView.dataSource = self
-        mainTableView.register(BeerTableCell.self, forCellReuseIdentifier: "\(BeerTableCell.self)")
     }
 }
 
-
+//MARK: - CollectionDataSource
 extension MenuViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
@@ -161,4 +167,5 @@ extension MenuViewController: UITableViewDataSource {
         return cell
     }
 }
+
 
