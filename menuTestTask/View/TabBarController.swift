@@ -15,24 +15,40 @@ enum Tabs: Int, CaseIterable {
 }
 
 final class TabBarController: UITabBarController {
+    
+    let menuViewController: MenuViewController
+    var menuPresenter: MenuPresenterImpl
+    let networkServicesBeer = NetworkServicesBeerImpl()
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.menuViewController = MenuViewController()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        configureAppearance()
         usagePresenter()
+        configureAppearance()
     }
     
     required init?(coder: NSCoder) {
+        self.menuViewController = MenuViewController()
+        self.menuPresenter = MenuPresenterImpl(view: <#T##MenuViewProtocol#>, beer: <#T##[BeerElement]#>)
         super.init(coder: coder)
         
-        configureAppearance()
         usagePresenter()
+        configureAppearance()
     }
     
     private func usagePresenter() {
-        let view = MenuViewController()
-        let presenter = MenuPresenterImpl(view: view)
-        view.presenter = presenter
+        networkServicesBeer.getBeerData { result in
+            switch result {
+            case .success(let data):
+                self.menuPresenter = MenuPresenterImpl(view: self.menuViewController,
+                                                      beer: data)
+               
+            case .failure(let error):
+                print(error)
+            }
+        }
+        self.menuViewController.presenter = self.menuPresenter
     }
     
     private func configureAppearance() {
@@ -55,7 +71,7 @@ final class TabBarController: UITabBarController {
     
     private func getController(for tab: Tabs) -> UIViewController {
         switch tab {
-        case .menu: return MenuViewController()
+        case .menu: return self.menuViewController
         case .contacts: return UIViewController()
         case .profile: return UIViewController()
         case .cart: return UIViewController()

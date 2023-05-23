@@ -11,14 +11,14 @@ protocol MenuViewProtocol: AnyObject {
     func setTableView(beerData: [BeerElement])
 }
 
-final class MenuViewController: UIViewController {
+final class MenuViewController: UIViewController, MenuViewProtocol {
     
     let store = StorageManager()
     let banners: [Photo] = Banner.allBanners()
-    var temperatureData: [BeerElement] = []
+    var temperatureData: [BeerElement?] = []
     var images: [UIImage?] = []
     
-    var presenter: MenuPresenterImpl?
+    var presenter: MenuPresenterProtocol?
     
     private let navBarMenu = NavBarMenu()
     
@@ -45,26 +45,24 @@ final class MenuViewController: UIViewController {
     }()
     
     let collectionViewCategories: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupFlow())
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = .init(width: 88, height: 32)
+        layout.scrollDirection = .horizontal
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = R.Colors.backgraund
         collectionView.showsHorizontalScrollIndicator = false
-        
-        func setupFlow() -> UICollectionViewFlowLayout {
-            let layout = UICollectionViewFlowLayout()
-            layout.itemSize = .init(width: 88, height: 32)
-            layout.scrollDirection = .horizontal
-            return layout
-        }
         return collectionView
     }()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        presenter?.setDataTableView()
         setupViews()
         addConstraintViews()
         configureAppearance()
         
-        presenter?.setDataTableView()
+       
     }
     
     required init?(coder: NSCoder) {
@@ -75,7 +73,7 @@ final class MenuViewController: UIViewController {
     }
 }
 
-extension MenuViewController: MenuViewProtocol {
+extension MenuViewController {
     func setTableView(beerData: [BeerElement]) {
         self.temperatureData = beerData
         print(temperatureData)
@@ -166,8 +164,8 @@ extension MenuViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(BeerTableCell.self)",
                                                        for: indexPath) as? BeerTableCell
         else { return UITableViewCell() }
-        let description = temperatureData[indexPath.row].description
-        let title = temperatureData[indexPath.row].name
+        let description = temperatureData[indexPath.row]?.description ?? "hell"
+        let title = temperatureData[indexPath.row]?.name ?? "hell1"
         cell.descriptionText.text = description
         cell.headerText.text = title
         return cell

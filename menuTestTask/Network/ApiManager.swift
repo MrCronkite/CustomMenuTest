@@ -53,7 +53,7 @@ final class NetworkServicesBeerImpl: NetworkServicesBeer {
     }
 }
 
-
+//TODO: then a whill
 func asyncLoadImage(imageURL: URL,
                     completion: @escaping (UIImage?, Error?) -> ()) {
     DispatchQueue.global().async {
