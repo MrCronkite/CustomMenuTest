@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol MenuViewProtocol: class {
+protocol MenuViewProtocol: AnyObject {
     func setTableView(beerData: [BeerElement])
 }
 

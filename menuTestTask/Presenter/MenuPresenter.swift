@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol MenuPresenterProtocol: class {
+protocol MenuPresenterProtocol: AnyObject {
     func setDataTableView()
 }
 
