@@ -30,7 +30,6 @@ final class TabBarController: UITabBarController {
     
     required init?(coder: NSCoder) {
         self.menuViewController = MenuViewController()
-        self.menuPresenter = MenuPresenterImpl(view: <#T##MenuViewProtocol#>, beer: <#T##[BeerElement]#>)
         super.init(coder: coder)
         
         usagePresenter()
