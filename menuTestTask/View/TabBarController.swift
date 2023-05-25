@@ -16,38 +16,18 @@ enum Tabs: Int, CaseIterable {
 
 final class TabBarController: UITabBarController {
     
-    let menuViewController: MenuViewController
-    var menuPresenter: MenuPresenterImpl
-    let networkServicesBeer = NetworkServicesBeerImpl()
+    let menuViewController = ModelBuilder.createMainModule()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.menuViewController = MenuViewController()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        usagePresenter()
         configureAppearance()
     }
     
     required init?(coder: NSCoder) {
-        self.menuViewController = MenuViewController()
         super.init(coder: coder)
         
-        usagePresenter()
         configureAppearance()
-    }
-    
-    private func usagePresenter() {
-        networkServicesBeer.getBeerData { result in
-            switch result {
-            case .success(let data):
-                self.menuPresenter = MenuPresenterImpl(view: self.menuViewController,
-                                                      beer: data)
-               
-            case .failure(let error):
-                print(error)
-            }
-        }
-        self.menuViewController.presenter = self.menuPresenter
     }
     
     private func configureAppearance() {
@@ -70,7 +50,7 @@ final class TabBarController: UITabBarController {
     
     private func getController(for tab: Tabs) -> UIViewController {
         switch tab {
-        case .menu: return self.menuViewController
+        case .menu: return menuViewController
         case .contacts: return UIViewController()
         case .profile: return UIViewController()
         case .cart: return UIViewController()

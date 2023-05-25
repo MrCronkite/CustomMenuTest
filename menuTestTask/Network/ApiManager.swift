@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NetworkServicesBeer {
-    func getBeerData (complition: @escaping (Result<Beer, Error>) -> Void)
+    func getBeerData (complition: @escaping (Result<[BeerElement], Error>) -> Void)
 }
 
 enum Errors: Error {
@@ -39,7 +39,7 @@ final class NetworkServicesBeerImpl: NetworkServicesBeer {
             switch (data, error) {
             case let (.some(data), nil):
                 do {
-                    let beer = try jsonDecoder.decode(Beer.self, from: data)
+                    let beer = try jsonDecoder.decode([BeerElement].self, from: data)
                     complition(.success(beer))
                 } catch {
                     complition(.failure(Errors.invalideState))

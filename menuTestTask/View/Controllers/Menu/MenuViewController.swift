@@ -7,18 +7,14 @@
 
 import UIKit
 
-protocol MenuViewProtocol: AnyObject {
-    func setTableView(beerData: [BeerElement])
-}
-
-final class MenuViewController: UIViewController, MenuViewProtocol {
+final class MenuViewController: UIViewController {
     
     let store = StorageManager()
     let banners: [Photo] = Banner.allBanners()
     var temperatureData: [BeerElement?] = []
     var images: [UIImage?] = []
     
-    var presenter: MenuPresenterProtocol?
+    var presenter: MenuPresenterProtocol!
     
     private let navBarMenu = NavBarMenu()
     
@@ -57,7 +53,6 @@ final class MenuViewController: UIViewController, MenuViewProtocol {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        presenter?.setDataTableView()
         setupViews()
         addConstraintViews()
         configureAppearance()
@@ -74,13 +69,6 @@ final class MenuViewController: UIViewController, MenuViewProtocol {
 }
 
 extension MenuViewController {
-    func setTableView(beerData: [BeerElement]) {
-        self.temperatureData = beerData
-        print(temperatureData)
-        DispatchQueue.main.async {
-            self.mainTableView.reloadData()
-        }
-    }
     
     private func setupViews() {
         [navBarMenu,
@@ -125,6 +113,19 @@ extension MenuViewController {
     }
 }
 
+extension MenuViewController: MenuViewProtocolPresenter {
+    func succes() {
+        print("hello")
+        mainTableView.reloadData()
+    }
+    
+    func failure(error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    
+}
+
 //MARK: - CollectionDataSource
 extension MenuViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -157,15 +158,15 @@ extension MenuViewController: UICollectionViewDataSource {
 //MARK: - TableDataSource
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        temperatureData.count
+        presenter.beerElement?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(BeerTableCell.self)",
                                                        for: indexPath) as? BeerTableCell
         else { return UITableViewCell() }
-        let description = temperatureData[indexPath.row]?.description ?? "hell"
-        let title = temperatureData[indexPath.row]?.name ?? "hell1"
+        let description = presenter.beerElement?[indexPath.row].description
+        let title = presenter.beerElement?[indexPath.row].name
         cell.descriptionText.text = description
         cell.headerText.text = title
         return cell

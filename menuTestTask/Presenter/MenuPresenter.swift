@@ -7,22 +7,41 @@
 
 import Foundation
 
-protocol MenuPresenterProtocol {
-    func setDataTableView()
+protocol MenuViewProtocolPresenter: AnyObject {
+    func succes()
+    func failure(error: Error)
+}
+
+protocol MenuPresenterProtocol: AnyObject {
+    init(view: MenuViewProtocolPresenter, networkService: NetworkServicesBeer)
+    func getBeer()
+    var beerElement: [BeerElement]? { get set }
 }
 
 final class MenuPresenterImpl: MenuPresenterProtocol {
-    weak var view: MenuViewProtocol?
-    var beer: [BeerElement]
+    weak var view: MenuViewProtocolPresenter?
+    let networkService: NetworkServicesBeer!
+    var beerElement: [BeerElement]?
     
-    init(view: MenuViewProtocol, beer: [BeerElement]) {
+    required init(view: MenuViewProtocolPresenter, networkService: NetworkServicesBeer) {
         self.view = view
-        self.beer = beer
+        self.networkService = networkService
+        getBeer()
     }
     
-    func setDataTableView() {
-        print(beer)
-        view?.setTableView(beerData: beer)
+    func getBeer() {
+        networkService.getBeerData { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    self.beerElement = data
+                    self.view?.succes()
+                case .failure(let error):
+                    self.view?.failure(error: error)
+                }
+            }
+        }
     }
 }
 
