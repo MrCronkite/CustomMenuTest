@@ -61,7 +61,7 @@ extension MenuDetailViewController {
             
             imageBeer.topAnchor.constraint(equalTo: lableBeer.bottomAnchor, constant: 10),
             imageBeer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageBeer.heightAnchor.constraint(equalToConstant: 180),
+            imageBeer.heightAnchor.constraint(equalToConstant: 280),
             imageBeer.widthAnchor.constraint(equalToConstant: 100),
             
             descriptionBeerLabel.topAnchor.constraint(equalTo: imageBeer.bottomAnchor, constant: 20),

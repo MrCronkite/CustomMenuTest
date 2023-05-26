@@ -51,9 +51,8 @@ final class MenuPresenterImpl: MenuPresenterProtocol {
         let dispatchGroup = DispatchGroup()
         guard let beerElement = beerElement else { return }
         for i in 0..<beerElement.count {
-            print(beerElement[i].imageURL)
             dispatchGroup.enter()
-            asyncLoadImage(imageURL: URL(string: beerElement[i].imageURL)!,
+            networkService.asyncLoadImage(imageURL: URL(string: beerElement[i].imageURL)!,
                            runQueue: DispatchQueue.global(),
                            completionQueue: DispatchQueue.main) { [weak self] result, error in
                 guard let image = result else { return }
@@ -61,19 +60,6 @@ final class MenuPresenterImpl: MenuPresenterProtocol {
                 self.images.append(image)
                 if self.images.count == 25 { self.view?.succes() }
                 dispatchGroup.leave()
-            }
-        }
-    }
-    
-    func asyncLoadImage(imageURL: URL, runQueue: DispatchQueue,
-                        completionQueue: DispatchQueue,
-                        completion: @escaping (UIImage?, Error?) -> ()) {
-        runQueue.async {
-            do {
-                let data = try Data(contentsOf: imageURL)
-                completionQueue.async { completion(UIImage(data: data), nil)}
-            } catch let error {
-                completionQueue.async { completion(nil, error)}
             }
         }
     }
