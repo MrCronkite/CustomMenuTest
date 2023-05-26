@@ -11,8 +11,6 @@ final class MenuViewController: UIViewController {
     
     let store = StorageManager()
     let banners: [Photo] = Banner.allBanners()
-    var temperatureData: [BeerElement?] = []
-    var images: [UIImage?] = []
     
     var presenter: MenuPresenterProtocol!
     
@@ -53,15 +51,15 @@ final class MenuViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
         setupViews()
         addConstraintViews()
         configureAppearance()
-        
-       
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
         setupViews()
         addConstraintViews()
         configureAppearance()
@@ -113,9 +111,8 @@ extension MenuViewController {
     }
 }
 
-extension MenuViewController: MenuViewProtocolPresenter {
+extension MenuViewController: MenuViewProtocol {
     func succes() {
-        print("hello")
         mainTableView.reloadData()
     }
     

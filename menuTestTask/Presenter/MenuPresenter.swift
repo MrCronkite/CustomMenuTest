@@ -7,23 +7,23 @@
 
 import Foundation
 
-protocol MenuViewProtocolPresenter: AnyObject {
+protocol MenuViewProtocol: AnyObject {
     func succes()
     func failure(error: Error)
 }
 
 protocol MenuPresenterProtocol: AnyObject {
-    init(view: MenuViewProtocolPresenter, networkService: NetworkServicesBeer)
+    init(view: MenuViewProtocol, networkService: NetworkServicesBeer)
     func getBeer()
     var beerElement: [BeerElement]? { get set }
 }
 
 final class MenuPresenterImpl: MenuPresenterProtocol {
-    weak var view: MenuViewProtocolPresenter?
-    let networkService: NetworkServicesBeer!
+    weak var view: MenuViewProtocol?
+    let networkService: NetworkServicesBeer
     var beerElement: [BeerElement]?
     
-    required init(view: MenuViewProtocolPresenter, networkService: NetworkServicesBeer) {
+    required init(view: MenuViewProtocol, networkService: NetworkServicesBeer) {
         self.view = view
         self.networkService = networkService
         getBeer()
@@ -35,6 +35,7 @@ final class MenuPresenterImpl: MenuPresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
+                    print(data[data.count-1].imageURL)
                     self.beerElement = data
                     self.view?.succes()
                 case .failure(let error):
