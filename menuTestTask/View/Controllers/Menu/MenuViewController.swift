@@ -172,8 +172,7 @@ extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let beerElement = presenter.beerElement?[indexPath.row]
         let image = presenter.images[indexPath.row]
-        let menuDetailViewController = ModelBuilder.createMenuDetailModule(beerElement: beerElement, image: image)
-        navigationController?.pushViewController(menuDetailViewController, animated: true)
+        presenter.tapOnTheBeerElement(beerElement: beerElement, image: image)
     }
 }
 

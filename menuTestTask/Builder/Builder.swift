@@ -7,27 +7,28 @@
 
 import UIKit
 
-protocol Builder {
-    static func createMenuModule() -> UIViewController
-    static func createMenuDetailModule(beerElement: BeerElement?, image: UIImage) -> UIViewController
+protocol AssemblyBuilderProtocol {
+    func createMenuModule(router: RouterProtocol) -> UIViewController
+    func createMenuDetailModule(beerElement: BeerElement?, image: UIImage, router: RouterProtocol) -> UIViewController
 }
 
-class ModelBuilder: Builder {
-    static func createMenuModule() -> UIViewController {
+class AssemblyModelBuilder: AssemblyBuilderProtocol {
+    func createMenuModule(router: RouterProtocol) -> UIViewController {
         let view = MenuViewController()
         let networkService = NetworkServicesBeerImpl()
-        let presenter = MenuPresenterImpl(view: view, networkService: networkService)
+        let presenter = MenuPresenterImpl(view: view, networkService: networkService, router: router)
         view.presenter = presenter
         return view
     }
     
-    static func createMenuDetailModule(beerElement: BeerElement?, image: UIImage) -> UIViewController {
+    func createMenuDetailModule(beerElement: BeerElement?, image: UIImage, router: RouterProtocol) -> UIViewController {
         let view = MenuDetailViewController()
         let networkService = NetworkServicesBeerImpl()
         let presenter = MenuDetailPresenter(view: view,
                                             networkService: networkService,
                                             beerElement: beerElement,
-                                            image: image)
+                                            image: image,
+                                            router: router)
         view.presenter = presenter
         return view
     }

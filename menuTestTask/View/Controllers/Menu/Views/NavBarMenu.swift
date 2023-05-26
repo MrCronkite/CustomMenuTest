@@ -9,7 +9,7 @@ import UIKit
 
 final class NavBarMenu: UIView {
     
-    let dropItemButton: MenuButton = {
+    private let dropItemButton: MenuButton = {
         let button = MenuButton()
         button.layer.borderWidth = 1
         button.layer.borderColor = R.Colors.activeAlpha04.cgColor
@@ -19,6 +19,7 @@ final class NavBarMenu: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
         addConstraintViews()
         configureAppearance()
@@ -26,6 +27,7 @@ final class NavBarMenu: UIView {
     
     required init?(coder: NSCoder) {
         super.init(frame: .zero)
+        
         setupViews()
         addConstraintViews()
         configureAppearance()

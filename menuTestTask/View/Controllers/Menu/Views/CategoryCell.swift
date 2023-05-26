@@ -22,16 +22,15 @@ final class СategoryCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        setupCategoryCell()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup() {
-        self.contentView.addSubview(buttonCell)
-        buttonCell.translatesAutoresizingMaskIntoConstraints = false
+    func setupCategoryCell() {
+        self.contentView.addViews(view: buttonCell)
         buttonCell.contentMode = .scaleAspectFill
         
         self.clipsToBounds = true

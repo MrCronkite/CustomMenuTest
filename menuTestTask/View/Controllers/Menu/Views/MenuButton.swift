@@ -9,7 +9,7 @@ import UIKit
 
 final class MenuButton: UIButton {
     
-    let menuLable: UILabel = {
+    private let menuLable: UILabel = {
         let lable = UILabel()
         lable.textColor = R.Colors.textColor
         lable.font = R.Font.helvetica(with: 15)
@@ -17,7 +17,7 @@ final class MenuButton: UIButton {
         return lable
     }()
     
-    let imageArrow: UIImageView = {
+    private let imageArrow: UIImageView = {
         var image = UIImageView()
         image.image = R.Images.downArrow
         image.tintColor = R.Colors.activeAlpha04
@@ -36,8 +36,9 @@ final class MenuButton: UIButton {
 }
 
 extension MenuButton {
-    func configureMenuButton() {
-        [menuLable, imageArrow].forEach { addViews(view: $0) }
+    private func configureMenuButton() {
+        [menuLable,
+         imageArrow].forEach { addViews(view: $0) }
         
         buttonAnimation(self)
         

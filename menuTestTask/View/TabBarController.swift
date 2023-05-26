@@ -16,8 +16,6 @@ enum Tabs: Int, CaseIterable {
 
 final class TabBarController: UITabBarController {
     
-    let menuViewController = ModelBuilder.createMenuModule()
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -42,6 +40,9 @@ final class TabBarController: UITabBarController {
             controller.tabBarItem = UITabBarItem(title: R.Strings.TabBar.title(for: tab),
                                                  image: R.ImagesBar.TabBar.icon(for: tab),
                                                  tag: tab.rawValue)
+            let assemblyBuilder = AssemblyModelBuilder()
+            let router = Router(navigationController: controller, assemblyBuilder: assemblyBuilder)
+            router.initialViewController()
             return controller
         }
         
@@ -50,7 +51,7 @@ final class TabBarController: UITabBarController {
     
     private func getController(for tab: Tabs) -> UIViewController {
         switch tab {
-        case .menu: return menuViewController
+        case .menu: return MenuViewController()
         case .contacts: return UIViewController()
         case .profile: return UIViewController()
         case .cart: return UIViewController()

@@ -13,23 +13,30 @@ protocol MenuViewProtocol: AnyObject {
 }
 
 protocol MenuPresenterProtocol: AnyObject {
-    init(view: MenuViewProtocol, networkService: NetworkServicesBeer)
+    init(view: MenuViewProtocol, networkService: NetworkServicesBeer, router: RouterProtocol)
     func getBeer()
     var beerElement: [BeerElement]? { get set }
     var images: [UIImage] { get set }
     func getImagesBeer()
+    func tapOnTheBeerElement(beerElement: BeerElement?, image: UIImage)
 }
 
 final class MenuPresenterImpl: MenuPresenterProtocol {
     weak var view: MenuViewProtocol?
+    var router: RouterProtocol?
     let networkService: NetworkServicesBeer
     var beerElement: [BeerElement]?
     var images = [UIImage] ()
     
-    required init(view: MenuViewProtocol, networkService: NetworkServicesBeer) {
+    required init(view: MenuViewProtocol, networkService: NetworkServicesBeer, router: RouterProtocol) {
         self.view = view
         self.networkService = networkService
+        self.router = router
         getBeer()
+    }
+    
+    func tapOnTheBeerElement(beerElement: BeerElement?, image: UIImage) {
+        router?.showDetail(beerElement: beerElement, image: image)
     }
     
     func getBeer() {

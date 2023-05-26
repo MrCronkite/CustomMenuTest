@@ -25,11 +25,11 @@ final class BeerTableCell: UITableViewCell {
     }()
     
     let descriptionText: UILabel = {
-       let lable = UILabel()
+        let lable = UILabel()
         lable.textColor = R.Colors.inactive
         lable.font = R.Font.helvetica(with: 12)
         lable.numberOfLines = 4
-       return lable
+        return lable
     }()
     
     let buttonPrice: UIButton = {
@@ -46,18 +46,20 @@ final class BeerTableCell: UITableViewCell {
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            super.init(style: style, reuseIdentifier: reuseIdentifier)
-            setupCell()
-        }
-        
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupCell()
+    }
+    
     required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func setupCell() {
-        [imageViewBeer, headerText, descriptionText, buttonPrice].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            contentView.addSubview($0)
+        [imageViewBeer,
+         headerText,
+         descriptionText,
+         buttonPrice].forEach {
+            contentView.addViews(view: $0)
         }
         
         NSLayoutConstraint.activate([
