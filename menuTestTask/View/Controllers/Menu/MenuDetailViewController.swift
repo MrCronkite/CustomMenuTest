@@ -20,13 +20,17 @@ class MenuDetailViewController: UIViewController {
     let descriptionBeerLabel: UILabel = {
         let lable = UILabel()
         lable.font = R.Font.helvetica(with: 17)
-        lable.numberOfLines = 8
+        lable.numberOfLines = 15
         lable.textAlignment = .center
         return lable
     }()
     
     let imageBeer: UIImageView = {
         let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.layer.cornerRadius = 66
+        view.backgroundColor = .red
+        view.clipsToBounds = true
         return view
     }()
     
@@ -57,7 +61,12 @@ extension MenuDetailViewController {
             lableBeer.widthAnchor.constraint(equalToConstant: 200),
             lableBeer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            descriptionBeerLabel.topAnchor.constraint(equalTo: lableBeer.bottomAnchor, constant: 20),
+            imageBeer.topAnchor.constraint(equalTo: lableBeer.bottomAnchor, constant: 10),
+            imageBeer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageBeer.heightAnchor.constraint(equalToConstant: 180),
+            imageBeer.widthAnchor.constraint(equalToConstant: 60),
+            
+            descriptionBeerLabel.topAnchor.constraint(equalTo: imageBeer.bottomAnchor, constant: 20),
             descriptionBeerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 7),
             descriptionBeerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -7)
         ])
