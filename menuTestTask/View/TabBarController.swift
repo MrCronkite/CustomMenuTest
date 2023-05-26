@@ -14,7 +14,9 @@ enum Tabs: Int, CaseIterable {
     case cart
 }
 
-final class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController{
+    
+    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -36,26 +38,34 @@ final class TabBarController: UITabBarController {
         tabBar.layer.borderColor = R.Colors.inactive.cgColor
         
         let controllers: [NavBarControoler] = Tabs.allCases.map { tab in
-            let controller = NavBarControoler(rootViewController: getController(for: tab))
+            let controller = NavBarControoler()
+            let assemblyBuilder = AssemblyModelBuilder()
             controller.tabBarItem = UITabBarItem(title: R.Strings.TabBar.title(for: tab),
                                                  image: R.ImagesBar.TabBar.icon(for: tab),
                                                  tag: tab.rawValue)
-            let assemblyBuilder = AssemblyModelBuilder()
+      
             let router = Router(navigationController: controller, assemblyBuilder: assemblyBuilder)
-            router.initialViewController()
+            
+            switch tab {
+            case .menu: router.initialViewController()
+            case .contacts: router.otherViewController()
+            case .profile: router.otherViewController()
+            case .cart: router.otherViewController()
+            }
+            
             return controller
         }
         
         setViewControllers(controllers, animated: false)
     }
     
-    private func getController(for tab: Tabs) -> UIViewController {
-        switch tab {
-        case .menu: return MenuViewController()
-        case .contacts: return UIViewController()
-        case .profile: return UIViewController()
-        case .cart: return UIViewController()
-        }
-    }
+    //    private func getController(for tab: Tabs) -> UIViewController {
+    //        switch tab {
+    //        case .menu: return MenuViewController()
+    //        case .contacts: return UIViewController()
+    //        case .profile: return UIViewController()
+    //        case .cart: return UIViewController()
+    //        }
+    //    }
 }
 
