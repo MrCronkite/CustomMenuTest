@@ -9,7 +9,7 @@ import UIKit
 
 protocol Builder {
     static func createMenuModule() -> UIViewController
-    static func createMenuDetailModule(beerElement: BeerElement?) -> UIViewController
+    static func createMenuDetailModule(beerElement: BeerElement?, image: UIImage) -> UIViewController
 }
 
 class ModelBuilder: Builder {
@@ -21,12 +21,13 @@ class ModelBuilder: Builder {
         return view
     }
     
-    static func createMenuDetailModule(beerElement: BeerElement?) -> UIViewController {
+    static func createMenuDetailModule(beerElement: BeerElement?, image: UIImage) -> UIViewController {
         let view = MenuDetailViewController()
         let networkService = NetworkServicesBeerImpl()
         let presenter = MenuDetailPresenter(view: view,
-                                                networkService: networkService,
-                                                beerElement: beerElement)
+                                            networkService: networkService,
+                                            beerElement: beerElement,
+                                            image: image)
         view.presenter = presenter
         return view
     }

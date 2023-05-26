@@ -48,6 +48,8 @@ final class MenuViewController: UIViewController {
         return collectionView
     }()
     
+    private var activityIndicator = UIActivityIndicatorView()
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -71,7 +73,8 @@ extension MenuViewController {
         [navBarMenu,
          collectionViewBanner,
          collectionViewCategories,
-         mainTableView].forEach { view.addViews(view: $0) }
+         mainTableView,
+         activityIndicator].forEach { view.addViews(view: $0) }
     }
     
     private func configureAppearance() {
@@ -85,6 +88,7 @@ extension MenuViewController {
         collectionViewBanner.dataSource = self
         mainTableView.dataSource = self
         mainTableView.delegate = self
+        activityIndicator.startAnimating()
     }
     
     private func addConstraintViews() {
@@ -106,7 +110,10 @@ extension MenuViewController {
             mainTableView.topAnchor.constraint(equalTo: collectionViewCategories.bottomAnchor, constant: 21),
             mainTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             mainTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            
+            activityIndicator.topAnchor.constraint(equalTo: collectionViewCategories.bottomAnchor, constant: 200),
+            activityIndicator.centerXAnchor.constraint(equalTo: mainTableView.centerXAnchor)
         ])
     }
 }
@@ -152,8 +159,10 @@ extension MenuViewController: UITableViewDataSource {
         else { return UITableViewCell() }
         let description = presenter.beerElement?[indexPath.row].description
         let title = presenter.beerElement?[indexPath.row].name
+        let image = presenter.images[indexPath.row]
         cell.descriptionText.text = description
         cell.headerText.text = title
+        cell.imageViewBeer.image = image
         return cell
     }
 }
@@ -162,19 +171,21 @@ extension MenuViewController: UITableViewDataSource {
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let beerElement = presenter.beerElement?[indexPath.row]
-        let menuDetailViewController = ModelBuilder.createMenuDetailModule(beerElement: beerElement)
+        let image = presenter.images[indexPath.row]
+        let menuDetailViewController = ModelBuilder.createMenuDetailModule(beerElement: beerElement, image: image)
         navigationController?.pushViewController(menuDetailViewController, animated: true)
     }
 }
 
 //MARK: - MenuViewProtocol
 extension MenuViewController: MenuViewProtocol {
-    func succes() {
-        mainTableView.reloadData()
-    }
-    
     func failure(error: Error) {
         print(error.localizedDescription)
+    }
+    
+    func succes() {
+        self.mainTableView.reloadData()
+        self.activityIndicator.stopAnimating()
     }
 }
 

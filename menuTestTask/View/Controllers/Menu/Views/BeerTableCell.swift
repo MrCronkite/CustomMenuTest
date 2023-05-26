@@ -11,9 +11,7 @@ final class BeerTableCell: UITableViewCell {
     
     let imageViewBeer: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 66
-        imageView.backgroundColor = .red
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
     }()

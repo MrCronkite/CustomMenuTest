@@ -27,9 +27,7 @@ class MenuDetailViewController: UIViewController {
     
     let imageBeer: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFill
-        view.layer.cornerRadius = 66
-        view.backgroundColor = .red
+        view.contentMode = .scaleAspectFit
         view.clipsToBounds = true
         return view
     }()
@@ -64,7 +62,7 @@ extension MenuDetailViewController {
             imageBeer.topAnchor.constraint(equalTo: lableBeer.bottomAnchor, constant: 10),
             imageBeer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageBeer.heightAnchor.constraint(equalToConstant: 180),
-            imageBeer.widthAnchor.constraint(equalToConstant: 60),
+            imageBeer.widthAnchor.constraint(equalToConstant: 100),
             
             descriptionBeerLabel.topAnchor.constraint(equalTo: imageBeer.bottomAnchor, constant: 20),
             descriptionBeerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 7),
@@ -79,8 +77,9 @@ extension MenuDetailViewController {
 }
 
 extension MenuDetailViewController: MenuDetailViewProtocol {
-    func setBeerData(beerElement: BeerElement?) {
+    func setBeerData(beerElement: BeerElement?, image: UIImage) {
         lableBeer.text = beerElement?.name
         descriptionBeerLabel.text = beerElement?.description
+        imageBeer.image = image
     }
 }

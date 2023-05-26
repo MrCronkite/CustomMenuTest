@@ -53,16 +53,3 @@ final class NetworkServicesBeerImpl: NetworkServicesBeer {
     }
 }
 
-//TODO: then a whill
-func asyncLoadImage(imageURL: URL,
-                    completion: @escaping (UIImage?, Error?) -> ()) {
-    DispatchQueue.global().async {
-        do {
-            let data = try Data(contentsOf: imageURL)
-            DispatchQueue.main.async { completion(UIImage(data: data), nil)}
-        } catch let error {
-            DispatchQueue.main.async { completion(nil, error)}
-        }
-    }
-}
-
