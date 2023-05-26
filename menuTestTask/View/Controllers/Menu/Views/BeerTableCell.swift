@@ -23,14 +23,12 @@ final class BeerTableCell: UITableViewCell {
         text.font = R.Font.helvetica(with: 18)
         text.numberOfLines = 2
         text.textColor = R.Colors.textColor
-        text.text = "Betchina and grib"
         return text
     }()
     
     let descriptionText: UILabel = {
        let lable = UILabel()
         lable.textColor = R.Colors.inactive
-        lable.text = "Betchina and grib china and grib china and grib china and grib china and grib china and grib china and grib china and grib china and grib china and grib"
         lable.font = R.Font.helvetica(with: 12)
         lable.numberOfLines = 4
        return lable

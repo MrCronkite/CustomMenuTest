@@ -11,14 +11,17 @@ class MenuDetailViewController: UIViewController {
     
     let lableBeer: UILabel = {
         let lable = UILabel()
-        lable.font = R.Font.helvetica(with: 24)
-        lable.text = "Hello world"
+        lable.font = R.Font.helvetica(with: 20)
+        lable.numberOfLines = 2
         lable.textAlignment = .center
         return lable
     }()
     
-    let descriptionBeer: UILabel = {
+    let descriptionBeerLabel: UILabel = {
         let lable = UILabel()
+        lable.font = R.Font.helvetica(with: 17)
+        lable.numberOfLines = 8
+        lable.textAlignment = .center
         return lable
     }()
     
@@ -43,26 +46,32 @@ extension MenuDetailViewController {
     private func setupViews() {
         [
             lableBeer,
-            descriptionBeer,
+            descriptionBeerLabel,
             imageBeer
         ].forEach { view.addViews(view: $0) }
     }
     
     private func addConstraintViews() {
         NSLayoutConstraint.activate([
-            lableBeer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            lableBeer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             lableBeer.widthAnchor.constraint(equalToConstant: 200),
-            lableBeer.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            lableBeer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            descriptionBeerLabel.topAnchor.constraint(equalTo: lableBeer.bottomAnchor, constant: 20),
+            descriptionBeerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 7),
+            descriptionBeerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -7)
         ])
     }
     
     private func configureAppearance() {
         view.backgroundColor = R.Colors.backgraund
+        navigationController?.navigationBar.isHidden = false
     }
 }
 
 extension MenuDetailViewController: MenuDetailViewProtocol {
     func setBeerData(beerElement: BeerElement?) {
-        lableBeer.text = beerElement?.name 
+        lableBeer.text = beerElement?.name
+        descriptionBeerLabel.text = beerElement?.description
     }
 }
