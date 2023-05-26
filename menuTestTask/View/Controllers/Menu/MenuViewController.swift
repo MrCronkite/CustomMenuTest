@@ -9,7 +9,6 @@ import UIKit
 
 final class MenuViewController: UIViewController {
     
-    let store = StorageManager()
     let banners: [Photo] = Banner.allBanners()
     
     var presenter: MenuPresenterProtocol!
@@ -85,6 +84,7 @@ extension MenuViewController {
         collectionViewCategories.dataSource = self
         collectionViewBanner.dataSource = self
         mainTableView.dataSource = self
+        mainTableView.delegate = self
     }
     
     private func addConstraintViews() {
@@ -109,18 +109,6 @@ extension MenuViewController {
             mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
-}
-
-extension MenuViewController: MenuViewProtocol {
-    func succes() {
-        mainTableView.reloadData()
-    }
-    
-    func failure(error: Error) {
-        print(error.localizedDescription)
-    }
-    
-    
 }
 
 //MARK: - CollectionDataSource
@@ -167,6 +155,26 @@ extension MenuViewController: UITableViewDataSource {
         cell.descriptionText.text = description
         cell.headerText.text = title
         return cell
+    }
+}
+
+//MARK: - TableDelegate
+extension MenuViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let beerElement = presenter.beerElement?[indexPath.row]
+        let menuDetailViewController = ModelBuilder.createMenuDetailModule(beerElement: beerElement)
+        navigationController?.pushViewController(menuDetailViewController, animated: true)
+    }
+}
+
+//MARK: - MenuViewProtocol
+extension MenuViewController: MenuViewProtocol {
+    func succes() {
+        mainTableView.reloadData()
+    }
+    
+    func failure(error: Error) {
+        print(error.localizedDescription)
     }
 }
 

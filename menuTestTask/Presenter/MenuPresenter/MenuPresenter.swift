@@ -35,7 +35,6 @@ final class MenuPresenterImpl: MenuPresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
-                    print(data[data.count-1].imageURL)
                     self.beerElement = data
                     self.view?.succes()
                 case .failure(let error):
