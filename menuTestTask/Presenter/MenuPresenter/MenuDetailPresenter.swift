@@ -18,6 +18,7 @@ protocol MenuDetailViewPresenterProtocol: AnyObject {
          router: RouterProtocol)
     
     func setBeerData()
+    func backToRootVC()
 }
 
 class MenuDetailPresenter: MenuDetailViewPresenterProtocol {
@@ -37,6 +38,10 @@ class MenuDetailPresenter: MenuDetailViewPresenterProtocol {
         self.beerElement = beerElement
         self.image = image
         self.router = router
+    }
+    
+    func backToRootVC() {
+        router?.goToMenu()
     }
     
     public func setBeerData() {

@@ -32,6 +32,13 @@ class MenuDetailViewController: UIViewController {
         return view
     }()
     
+    let backButton: UIButton = {
+        let view = UIButton()
+        view.setTitle("Back", for: .normal)
+        view.setTitleColor(.black, for: .normal)
+        return view
+    }()
+    
     var presenter: MenuDetailViewPresenterProtocol!
     
     override func viewDidLoad() {
@@ -41,6 +48,7 @@ class MenuDetailViewController: UIViewController {
         addConstraintViews()
         configureAppearance()
         presenter.setBeerData()
+        backButton.addTarget(self, action: #selector(goToMenuVC), for: .touchUpInside)
     }
 }
 
@@ -49,7 +57,8 @@ extension MenuDetailViewController {
         [
             lableBeer,
             descriptionBeerLabel,
-            imageBeer
+            imageBeer,
+            backButton
         ].forEach { view.addViews(view: $0) }
     }
     
@@ -66,13 +75,19 @@ extension MenuDetailViewController {
             
             descriptionBeerLabel.topAnchor.constraint(equalTo: imageBeer.bottomAnchor, constant: 20),
             descriptionBeerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 7),
-            descriptionBeerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -7)
+            descriptionBeerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -7),
+            
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 7)
         ])
     }
     
     private func configureAppearance() {
         view.backgroundColor = R.Colors.backgraund
-        navigationController?.navigationBar.isHidden = false
+    }
+    
+    @objc func goToMenuVC() {
+        presenter.backToRootVC()
     }
 }
 

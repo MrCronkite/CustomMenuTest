@@ -79,7 +79,6 @@ extension MenuViewController {
     
     private func configureAppearance() {
         view.backgroundColor = R.Colors.backgraund
-        navigationController?.navigationBar.isHidden = true
         
         collectionViewBanner.register(BannerCell.self, forCellWithReuseIdentifier: "\(BannerCell.self)")
         collectionViewCategories.register(СategoryCell.self, forCellWithReuseIdentifier: "\(СategoryCell.self)")

@@ -16,6 +16,7 @@ protocol RouterProtocol: MenuRouter {
     func initialViewController()
     func otherViewController()
     func showDetail(beerElement: BeerElement?, image: UIImage)
+    func goToMenu()
 }
 
 class Router: RouterProtocol {
@@ -43,9 +44,15 @@ class Router: RouterProtocol {
     func showDetail(beerElement: BeerElement?, image: UIImage) {
         if let navigationController = navigationController {
             guard let detailViewController = assemblyBuilder?.createMenuDetailModule(beerElement: beerElement,
-                                                                                     image: image,
-                                                                                     router: self) else { return }
+                                                        image: image,
+                                                        router: self) else { return }
             navigationController.pushViewController(detailViewController, animated: true)
+        }
+    }
+    
+    func goToMenu() {
+        if let navigationController = navigationController {
+            navigationController.popToRootViewController(animated: true)
         }
     }
 }
