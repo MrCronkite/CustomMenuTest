@@ -13,10 +13,12 @@ protocol MenuViewProtocol: AnyObject {
 }
 
 protocol MenuPresenterProtocol: AnyObject {
-    init(view: MenuViewProtocol, networkService: NetworkServicesBeer, router: RouterProtocol)
-    func getBeer()
     var beerElement: [BeerElement]? { get set }
     var images: [UIImage] { get set }
+    
+    init(view: MenuViewProtocol, networkService: NetworkServicesBeer, router: RouterProtocol)
+    
+    func getBeer()
     func getImagesBeer()
     func tapOnTheBeerElement(beerElement: BeerElement?, image: UIImage)
 }
@@ -59,13 +61,15 @@ final class MenuPresenterImpl: MenuPresenterProtocol {
         guard let beerElement = beerElement else { return }
         for i in 0..<beerElement.count {
             dispatchGroup.enter()
+            
             networkService.asyncLoadImage(imageURL: URL(string: beerElement[i].imageURL)!,
-                           runQueue: DispatchQueue.global(),
-                           completionQueue: DispatchQueue.main) { [weak self] result, error in
-                guard let image = result else { return }
+                                          runQueue: DispatchQueue.global(),
+                                          completionQueue: DispatchQueue.main) { [weak self] result, error in
                 guard let self = self else { return }
+                guard let image = result else { return }
                 self.images.append(image)
                 if self.images.count == 25 { self.view?.succes() }
+                
                 dispatchGroup.leave()
             }
         }

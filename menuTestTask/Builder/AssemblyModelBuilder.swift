@@ -9,7 +9,9 @@ import UIKit
 
 protocol AssemblyBuilderProtocol {
     func createMenuModule(router: RouterProtocol) -> UIViewController
-    func createMenuDetailModule(beerElement: BeerElement?, image: UIImage, router: RouterProtocol) -> UIViewController
+    func createMenuDetailModule(beerElement: BeerElement?,
+                                image: UIImage,
+                                router: RouterProtocol) -> UIViewController
 }
 
 class AssemblyModelBuilder: AssemblyBuilderProtocol {
@@ -21,7 +23,10 @@ class AssemblyModelBuilder: AssemblyBuilderProtocol {
         return view
     }
     
-    func createMenuDetailModule(beerElement: BeerElement?, image: UIImage, router: RouterProtocol) -> UIViewController {
+    func createMenuDetailModule(beerElement: BeerElement?,
+                                image: UIImage,
+                                router: RouterProtocol) -> UIViewController {
+        
         let view = MenuDetailViewController()
         let networkService = NetworkServicesBeerImpl()
         let presenter = MenuDetailPresenter(view: view,

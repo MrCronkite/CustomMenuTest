@@ -13,7 +13,7 @@ protocol MenuRouter {
 }
 
 protocol RouterProtocol: MenuRouter {
-    func initialViewController()
+    func startMenuViewController()
     func otherViewController()
     func showDetail(beerElement: BeerElement?, image: UIImage)
     func goToMenu()
@@ -28,7 +28,7 @@ class Router: RouterProtocol {
         self.assemblyBuilder = assemblyBuilder
     }
     
-    func initialViewController() {
+    func startMenuViewController() {
         if let navigationController = navigationController {
             guard let menuViewController = assemblyBuilder?.createMenuModule(router: self) else { return }
             navigationController.viewControllers = [menuViewController]

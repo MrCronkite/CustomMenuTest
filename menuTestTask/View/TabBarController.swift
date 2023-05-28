@@ -16,8 +16,6 @@ enum Tabs: Int, CaseIterable {
 
 final class TabBarController: UITabBarController{
     
-    
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -29,7 +27,9 @@ final class TabBarController: UITabBarController{
         
         configureAppearance()
     }
-    
+}
+
+extension TabBarController {
     private func configureAppearance() {
         tabBar.tintColor = R.Colors.active
         tabBar.barTintColor = R.Colors.inactive
@@ -47,7 +47,7 @@ final class TabBarController: UITabBarController{
             let router = Router(navigationController: controller, assemblyBuilder: assemblyBuilder)
             
             switch tab {
-            case .menu: router.initialViewController()
+            case .menu: router.startMenuViewController()
             case .contacts: router.otherViewController()
             case .profile: router.otherViewController()
             case .cart: router.otherViewController()
@@ -55,17 +55,7 @@ final class TabBarController: UITabBarController{
             
             return controller
         }
-        
         setViewControllers(controllers, animated: false)
     }
-    
-    //    private func getController(for tab: Tabs) -> UIViewController {
-    //        switch tab {
-    //        case .menu: return MenuViewController()
-    //        case .contacts: return UIViewController()
-    //        case .profile: return UIViewController()
-    //        case .cart: return UIViewController()
-    //        }
-    //    }
 }
 

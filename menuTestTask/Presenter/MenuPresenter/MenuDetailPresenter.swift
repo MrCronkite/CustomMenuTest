@@ -33,6 +33,7 @@ class MenuDetailPresenter: MenuDetailViewPresenterProtocol {
                   beerElement: BeerElement?,
                   image: UIImage,
                   router: RouterProtocol) {
+        
         self.view = view
         self.networkService = networkService
         self.beerElement = beerElement
