@@ -68,7 +68,6 @@ final class MenuViewController: UIViewController {
 }
 
 extension MenuViewController {
-    
     private func setupViews() {
         [navBarMenu,
          collectionViewBanner,
