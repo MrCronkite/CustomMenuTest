@@ -72,9 +72,8 @@ final class MenuPresenterImpl: MenuPresenterProtocol {
                 guard let image = result else { return }
                 self.images.append(image)
                 if self.images.count == 25 {
-                    
-                }
-                self.storage.setImages(self.images, forKey: .keysBeer)
+                    self.view?.succes()
+                    self.storage.setImages(self.images, forKey: .keysBeer) }
                 dispatchGroup.leave()
             }
         }
