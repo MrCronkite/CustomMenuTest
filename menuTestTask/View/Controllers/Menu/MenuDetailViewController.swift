@@ -78,7 +78,7 @@ extension MenuDetailViewController {
             descriptionBeerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -7),
             
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 7)
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 13)
         ])
     }
     

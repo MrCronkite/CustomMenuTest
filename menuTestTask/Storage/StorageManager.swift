@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - CRUD
 protocol StorageManagerProtocol {
-    func set(_ object: Any?, forKey key: StorageManager.Keys)
+    func set(_ object: [Any], forKey key: StorageManager.Keys)
     
     func dict(forKey key: StorageManager.Keys) -> [BeerElement]?
     func images(forKey key: StorageManager.Keys) -> [UIImage?]?
@@ -24,9 +24,7 @@ final class StorageManager {
     private let userDefaults = UserDefaults.standard
     
     private func store(_ object: Any?, key: String) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.userDefaults.set(object, forKey: key)
-        }
+        userDefaults.set(object, forKey: key)
     }
     
     private func restore(forKey key: String) -> Any? {
@@ -36,7 +34,7 @@ final class StorageManager {
 
 extension StorageManager: StorageManagerProtocol {
     
-    func set(_ object: Any?, forKey key: Keys) {
+    func set(_ object: [Any], forKey key: Keys) {
         store(object, key: key.rawValue)
     }
     

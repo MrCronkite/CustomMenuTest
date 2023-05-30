@@ -18,7 +18,8 @@ class AssemblyModelBuilder: AssemblyBuilderProtocol {
     func createMenuModule(router: RouterProtocol) -> UIViewController {
         let view = MenuViewController()
         let networkService = NetworkServicesBeerImpl()
-        let presenter = MenuPresenterImpl(view: view, networkService: networkService, router: router)
+        let storage = StorageManager()
+        let presenter = MenuPresenterImpl(view: view, networkService: networkService, router: router, storage: storage)
         view.presenter = presenter
         return view
     }

@@ -12,6 +12,7 @@ final class MenuViewController: UIViewController {
     let banners: [Photo] = Banner.allBanners()
     
     var presenter: MenuPresenterProtocol!
+    var storage: StorageManagerProtocol!
     
     private let navBarMenu = NavBarMenu()
     
@@ -182,6 +183,7 @@ extension MenuViewController: MenuViewProtocol {
     }
     
     func succes() {
+     //   print(storage.dict(forKey: .keysBeer)!)
         self.mainTableView.reloadData()
         self.activityIndicator.stopAnimating()
     }

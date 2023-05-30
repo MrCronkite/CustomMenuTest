@@ -16,7 +16,7 @@ protocol MenuPresenterProtocol: AnyObject {
     var beerElement: [BeerElement]? { get set }
     var images: [UIImage] { get set }
     
-    init(view: MenuViewProtocol, networkService: NetworkServicesBeer, router: RouterProtocol)
+    init(view: MenuViewProtocol, networkService: NetworkServicesBeer, router: RouterProtocol, storage: StorageManagerProtocol)
     
     func getBeer()
     func getImagesBeer()
@@ -26,14 +26,16 @@ protocol MenuPresenterProtocol: AnyObject {
 final class MenuPresenterImpl: MenuPresenterProtocol {
     weak var view: MenuViewProtocol?
     var router: RouterProtocol?
+    var storage: StorageManagerProtocol
     let networkService: NetworkServicesBeer
     var beerElement: [BeerElement]?
     var images = [UIImage] ()
     
-    required init(view: MenuViewProtocol, networkService: NetworkServicesBeer, router: RouterProtocol) {
+    required init(view: MenuViewProtocol, networkService: NetworkServicesBeer, router: RouterProtocol, storage: StorageManagerProtocol) {
         self.view = view
         self.networkService = networkService
         self.router = router
+        self.storage = storage
         getBeer()
     }
     
@@ -68,8 +70,10 @@ final class MenuPresenterImpl: MenuPresenterProtocol {
                 guard let self = self else { return }
                 guard let image = result else { return }
                 self.images.append(image)
-                if self.images.count == 25 { self.view?.succes() }
-                
+                if self.images.count == 25 {
+                    self.view?.succes()
+                    self.storage.set(self.images, forKey: .keysBeer)
+                }
                 dispatchGroup.leave()
             }
         }
