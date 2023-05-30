@@ -12,7 +12,7 @@ final class MenuViewController: UIViewController {
     let banners: [Photo] = Banner.allBanners()
     
     var presenter: MenuPresenterProtocol!
-    var storage: StorageManagerProtocol!
+    var storage: StorageManagerProtocol = StorageManager()
     
     private let navBarMenu = NavBarMenu()
     
@@ -159,7 +159,7 @@ extension MenuViewController: UITableViewDataSource {
         else { return UITableViewCell() }
         let description = presenter.beerElement?[indexPath.row].description
         let title = presenter.beerElement?[indexPath.row].name
-        let image = presenter.images[indexPath.row]
+        let image = storage.images(forKey: .keysBeer)?[indexPath.row]
         cell.descriptionText.text = description
         cell.headerText.text = title
         cell.imageViewBeer.image = image
@@ -171,8 +171,8 @@ extension MenuViewController: UITableViewDataSource {
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let beerElement = presenter.beerElement?[indexPath.row]
-        let image = presenter.images[indexPath.row]
-        presenter.tapOnTheBeerElement(beerElement: beerElement, image: image)
+        let image = storage.images(forKey: .keysBeer)?[indexPath.row]
+        presenter.tapOnTheBeerElement(beerElement: beerElement, image: image!)
     }
 }
 
@@ -183,7 +183,6 @@ extension MenuViewController: MenuViewProtocol {
     }
     
     func succes() {
-     //   print(storage.dict(forKey: .keysBeer)!)
         self.mainTableView.reloadData()
         self.activityIndicator.stopAnimating()
     }

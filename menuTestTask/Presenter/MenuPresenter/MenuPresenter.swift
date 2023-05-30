@@ -59,6 +59,7 @@ final class MenuPresenterImpl: MenuPresenterProtocol {
     }
     
     func getImagesBeer() {
+        if storage.images(forKey: .keysBeer) != nil { self.view?.succes() }
         let dispatchGroup = DispatchGroup()
         guard let beerElement = beerElement else { return }
         for i in 0..<beerElement.count {
@@ -71,9 +72,9 @@ final class MenuPresenterImpl: MenuPresenterProtocol {
                 guard let image = result else { return }
                 self.images.append(image)
                 if self.images.count == 25 {
-                    self.view?.succes()
-                    self.storage.set(self.images, forKey: .keysBeer)
+                    
                 }
+                self.storage.setImages(self.images, forKey: .keysBeer)
                 dispatchGroup.leave()
             }
         }
