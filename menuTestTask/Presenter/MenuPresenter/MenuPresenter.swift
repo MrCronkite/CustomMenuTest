@@ -59,12 +59,12 @@ final class MenuPresenterImpl: MenuPresenterProtocol {
     }
     
     func getImagesBeer() {
-        if storage.images(forKey: .keysBeer) != nil { self.view?.succes() }
         let dispatchGroup = DispatchGroup()
+        if storage.images(forKey: .keysBeer) != nil { self.view?.succes() }
         guard let beerElement = beerElement else { return }
         for i in 0..<beerElement.count {
-            dispatchGroup.enter()
             
+            dispatchGroup.enter()
             networkService.asyncLoadImage(imageURL: URL(string: beerElement[i].imageURL)!,
                                           runQueue: DispatchQueue.global(),
                                           completionQueue: DispatchQueue.main) { [weak self] result, error in
