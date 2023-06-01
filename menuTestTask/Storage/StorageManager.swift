@@ -55,7 +55,7 @@ extension StorageManager: StorageManagerProtocol {
     
     func images(forKey key: Keys) -> [UIImage]? {
         var arreyImages: [UIImage] = []
-        let data = restore(forKey: key.rawValue) as! [Data]
+        guard let data = restore(forKey: key.rawValue) as? [Data] else { return nil }
         for i in 0..<data.count {
             let decoded = try! PropertyListDecoder().decode(Data.self, from: data[i])
             let image = UIImage(data: decoded)
