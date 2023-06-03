@@ -8,19 +8,8 @@
 import UIKit
 
 final class СategoryCell: UICollectionViewCell {
-//    let buttonCell: UIButton = {
-//        let button = UIButton()
-//        button.layer.borderWidth = 1
-//        button.layer.borderColor = R.Colors.activeAlpha04.cgColor
-//        button.backgroundColor = .white
-//        button.buttonAnimation(button)
-//        button.setTitleColor(R.Colors.textColor, for: .normal)
-//        button.titleLabel?.font = R.Font.helvetica(with: 13)
-//        button.layer.cornerRadius = 15
-//        return button
-//    }()
     
-    let lableText: UILabel = {
+    let lableTextCell: UILabel = {
         let lable = UILabel()
         lable.layer.borderWidth = 1
         lable.layer.borderColor = R.Colors.activeAlpha04.cgColor
@@ -43,15 +32,15 @@ final class СategoryCell: UICollectionViewCell {
     }
     
     func setupCategoryCell() {
-        self.contentView.addViews(view: lableText)
-        lableText.contentMode = .scaleAspectFill
-        lableText.clipsToBounds = true
+        self.contentView.addViews(view: lableTextCell)
+        lableTextCell.contentMode = .scaleAspectFill
+        lableTextCell.clipsToBounds = true
         
         NSLayoutConstraint.activate([
-            lableText.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            lableText.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            lableText.topAnchor.constraint(equalTo: contentView.topAnchor),
-            lableText.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            lableTextCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            lableTextCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            lableTextCell.topAnchor.constraint(equalTo: contentView.topAnchor),
+            lableTextCell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }
