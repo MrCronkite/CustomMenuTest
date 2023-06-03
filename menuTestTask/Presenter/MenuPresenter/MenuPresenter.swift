@@ -49,6 +49,7 @@ final class MenuPresenterImpl: MenuPresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
+                    print(data)
                     self.beerElement = data
                     self.getImagesBeer()
                 case .failure(let error):

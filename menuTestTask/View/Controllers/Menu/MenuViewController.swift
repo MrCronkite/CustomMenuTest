@@ -10,6 +10,7 @@ import UIKit
 final class MenuViewController: UIViewController {
     
     let banners: [Photo] = Banner.allBanners()
+    let categoryBeer = ["3.2-4.6%", "4.5-6.2%", "6.3-7.4%", "7-10%", "9-14%"]
     
     var presenter: MenuPresenterProtocol!
     var storage: StorageManagerProtocol = StorageManager()
@@ -122,7 +123,7 @@ extension MenuViewController {
 extension MenuViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
-        case collectionViewCategories: return 6
+        case collectionViewCategories: return categoryBeer.count
         case collectionViewBanner: return banners.count
         default: return 0
         }
@@ -140,7 +141,7 @@ extension MenuViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(СategoryCell.self)",
                                                                 for: indexPath) as? СategoryCell
             else { return UICollectionViewCell() }
-            cell.buttonCell.setTitle("Пицца", for: .normal)
+            cell.buttonCell.setTitle(categoryBeer[indexPath.item], for: .normal)
             return cell
         default: return UICollectionViewCell()
         }
