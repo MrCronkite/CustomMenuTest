@@ -86,6 +86,7 @@ extension MenuViewController {
         mainTableView.register(BeerTableCell.self, forCellReuseIdentifier: "\(BeerTableCell.self)")
         
         collectionViewCategories.dataSource = self
+        collectionViewCategories.delegate = self
         collectionViewBanner.dataSource = self
         mainTableView.dataSource = self
         mainTableView.delegate = self
@@ -117,6 +118,8 @@ extension MenuViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: mainTableView.centerXAnchor)
         ])
     }
+    
+    
 }
 
 //MARK: - CollectionDataSource
@@ -141,9 +144,24 @@ extension MenuViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(СategoryCell.self)",
                                                                 for: indexPath) as? СategoryCell
             else { return UICollectionViewCell() }
-            cell.buttonCell.setTitle(categoryBeer[indexPath.item], for: .normal)
+            cell.lableText.text = categoryBeer[indexPath.row]
             return cell
         default: return UICollectionViewCell()
+        }
+    }
+}
+
+extension MenuViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            switch indexPath.row {
+            case 0: self.mainTableView.scrollToRow(at: IndexPath(row: 24, section: 0), at: .top, animated: true)
+            case 1: self.mainTableView.scrollToRow(at: IndexPath(row: 19, section: 0), at: .top, animated: true)
+            case 2: self.mainTableView.scrollToRow(at: IndexPath(row: 14, section: 0), at: .top, animated: true)
+            case 3: self.mainTableView.scrollToRow(at: IndexPath(row: 9, section: 0), at: .top, animated: true)
+            case 4: self.mainTableView.scrollToRow(at: IndexPath(row: 4, section: 0), at: .top, animated: true)
+            default: return
+            }
         }
     }
 }
