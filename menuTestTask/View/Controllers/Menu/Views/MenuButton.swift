@@ -42,8 +42,6 @@ extension MenuButton {
         [menuLable,
          imageArrow].forEach { addViews(view: $0) }
         
-        buttonAnimation(self)
-        
         NSLayoutConstraint.activate([
             menuLable.centerYAnchor.constraint(equalTo: centerYAnchor),
             menuLable.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
@@ -53,5 +51,7 @@ extension MenuButton {
             imageArrow.heightAnchor.constraint(equalToConstant: 5),
             imageArrow.widthAnchor.constraint(equalToConstant: 10)
         ])
+        
+        buttonAnimation(self)
     }
 }

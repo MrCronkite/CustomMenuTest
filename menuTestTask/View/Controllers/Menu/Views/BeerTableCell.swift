@@ -34,7 +34,7 @@ final class BeerTableCell: UITableViewCell {
     
     let buttonPrice: UIButton = {
         let button = UIButton()
-        button.setTitle("от 345 р", for: .normal)
+        button.setTitle(R.Strings.price , for: .normal)
         button.layer.borderWidth = 1
         button.buttonAnimation(button)
         button.layer.borderColor = R.Colors.active.cgColor

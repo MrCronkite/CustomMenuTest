@@ -32,7 +32,6 @@ final class NavBarMenu: UIView {
         addConstraintViews()
         configureAppearance()
     }
-    
 }
 
 extension NavBarMenu {

@@ -33,6 +33,8 @@ enum R {
                 }
             }
         }
+        
+        static let price = "от 345 р"
     }
     
     enum ImagesBar {
